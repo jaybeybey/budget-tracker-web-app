@@ -1,0 +1,66 @@
+.sidenav {
+  height: 100vh;
+  width: 5vw;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #3A4851;
+  padding-top: 20px;
+  overflow: auto;
+
+}
+
+.sidenav button {
+  /* display: flex;
+  justify-content: center; */
+  padding: 8px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #818181;
+  display: block;
+  background-color: transparent;
+  border: none;
+}
+
+.sidenav img:hover {
+  transition: transform .2s;
+  max-height: 45px;
+  margin: 0 auto;
+  padding-left: 10px;
+
+}
+
+.sidenav img {
+  max-height: 35px;
+  padding-left: 15px;
+  text-align: center
+}
+
+.sidenav .expense-img {
+  padding: 0px;
+}
+
+/* .web-wallet {
+  display: flex;
+  align-items: center;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  font-family: 'Roboto Slab', serif;
+  width: 50px;  
+}
+
+.web-wallet h2 {
+  color: rgb(224, 238, 34);
+  font-weight: 200;
+}
+
+.web-wallet h2 span {
+  color: rgb(46, 192, 46);
+  font-weight: 800;
+}
+
+img {
+  max-height: 50px;
+  max-width: 100%;
+  padding-left: 10px;
+} */

@@ -1,0 +1,14 @@
+.App {
+    display: flex;
+    flex-shrink: 0;
+    font-family: 'Proza Libre', sans-serif;
+    height: auto;
+    width: auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}

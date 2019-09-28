@@ -1,0 +1,57 @@
+.expenses-container {
+    height: 85.20vh;
+    margin: auto;
+    width: 90%;
+}
+
+.else-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 10%;
+    color: rgb(31, 23, 23);
+}
+
+.expense-props {
+    text-align: center;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border: 3px solid #ddd;
+    min-width: 100%;
+}
+
+.expense-props td {
+    font-size: 15px;
+}
+
+.expense-props td,
+.expense-props th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.expense-props tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.expense-props tr:nth-child(odd) {
+    background-color: #b9b8b8;
+}
+
+.expense-props tr:hover {
+    background-color: #ddd;
+}
+
+.expense-props th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 12px;
+}
+
+.td-remove:hover {
+    cursor: pointer;
+    
+}
+

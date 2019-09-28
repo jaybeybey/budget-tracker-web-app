@@ -1,0 +1,61 @@
+.chart-contianer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    /* background-color: rgb(255, 255, 255)  */
+}
+
+/* .report-card {
+    padding-top: 140px;
+    background: silver;
+    width: 50%;
+} */
+
+.table {
+    display: table;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: papayawhip;
+}
+
+.th {
+    display: table-header-group;
+    background-color: rgb(231, 176, 86);
+}
+
+.tr {
+    display: table-row;
+}
+
+.td {
+    display: table-cell;
+    width: 300px;
+    border: 1px solid rgb(85, 79, 79);
+}
+
+.donut {
+    padding-top: 140px;
+}
+
+.total-td {
+    display: table-cell;
+    border: 1px solid rgb(85, 79, 79);
+    background-color: rgb(238, 173, 68);
+}
+
+p {
+    border: 1px solid rgb(85, 79, 79);
+    background-color: rgb(238, 173, 68);
+}
+
+
+/* .donut-chart {
+    margin-left: 50px
+} */
+
+.spending-table {
+    margin-top: 30px;
+    margin-right: 280px
+}

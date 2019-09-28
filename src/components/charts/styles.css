@@ -1,0 +1,31 @@
+.report-container {
+    /* display: flex; */
+    /* border: 2px solid green; */
+    width: 60vw;
+    margin: 0 auto;
+    background-color: rgb(177, 196, 178);
+
+}
+
+.gauge-charts {
+    display: flex;
+    justify-content: center;
+    border: 2px solid rgb(223, 211, 211);
+    background-color: aliceblue;
+}
+
+
+/* .btn-budget {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-budget button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+} */
+

@@ -1,0 +1,156 @@
+.ext-budget {
+    position: fixed; 
+    z-index: 1; 
+    left: 0px;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgb(0, 0, 0, 0.8);
+}
+
+.int-budget {
+    position: absolute;
+    margin: 0 auto;
+    left: 40%;
+    top: 20%;
+    width: 280px;
+    height: 350px;
+    border-radius: 5px;
+    padding: 80px;
+    background: rgb(186, 210, 224);
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+}
+
+.budget-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.error {
+    color: red;
+    font-size: 10px;
+    margin: 0 auto;
+    margin-left: 115px;
+}
+
+/* =============================================================================== */
+
+
+.budget-form label {
+    float: left;
+    width: 120px;
+}
+
+textarea:focus,
+input:focus {
+    border: 1px solid rgb(243, 157, 157);
+}
+
+/* .budget-form input,
+textarea,
+select {
+    width: 200px;
+    margin: 0;
+} */
+
+
+select,
+option {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+
+.save-btn {
+    padding:5px 15px; 
+    background:rgb(202, 190, 190, 0.8); 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.save-btn:hover {
+    text-shadow: 0 0 2em rgba(255, 255, 255, 1);
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+/* x button */
+
+.x {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    color: black;
+    top: -8px;
+    right: -8px;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    background:rgb(202, 190, 190); 
+    border: none;
+}
+
+.x::before, .x::after {
+	position: absolute;
+	top: 9px;
+	left: 4px;
+	width: 13px;
+	height: 3px;
+	content: "";
+    background-color: #eb2727;
+	display: none;
+	}
+.x::before {
+	-ms-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	}
+.x::after {
+	-ms-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	}
+.x:hover { cursor: pointer; }
+.x:hover::before, .x:hover::after { display: block; }
+
+
+/* ------------------------------------------------------------- */
+
+
+.inpt-name-amount {
+    border: 2px solid green;
+}
+
+.inpt-date-category {
+    border: 2px solid red;
+    /* display: flex; */
+    justify-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.inpt-date-category select {
+    width: 180px;
+    padding: 5px;
+    margin: 10px auto;
+}
+
+/* .inpt-date-category input {
+    border: 2px solid red;
+    width: 20000000px;
+    padding: 5px;
+    margin: 10px auto;
+} */
+
+.inpt-note textarea{
+    /* border: 2px solid rgb(22, 38, 187); */
+    width: 350px;
+    height: 130px;
+}

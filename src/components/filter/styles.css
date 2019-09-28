@@ -1,0 +1,14 @@
+.filter {
+    color: black;
+    /* background-color: #EEEEEE; */
+    background-color: rgb(224, 212, 212);
+    text-align: center;
+    height: 4vh;
+    border: 1px solid gray;
+}
+
+.radio-input ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
