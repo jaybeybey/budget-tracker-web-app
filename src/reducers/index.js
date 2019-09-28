@@ -129,7 +129,7 @@ export const newBudget = (state = initialState.budget, action) => {
             color: action.color,
             amount: action.amount,
             notes: action.notes
-          }: state
+          }: item
         ))
     default:
       return state;
