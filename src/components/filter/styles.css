@@ -3,8 +3,15 @@
     /* background-color: #EEEEEE; */
     background-color: rgb(224, 212, 212);
     text-align: center;
-    height: 4vh;
     border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter h6 {
+    margin: 0;
+    padding: 0 25px;
 }
 
 .radio-input ul {

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
 
-import NewBudget from '../../../../components/newExpense'
+import ExpenseModal from '../../../../components/expenseModal'
 import "./styles.css";
+import {withRouter} from 'react-router-dom';
 
-
-export default function SideBar() {
+const SideBar = ({ history }) => {
   const [showCreate, setShowCreate] = useState(false);
   const onCreateBudget = () => {
     setShowCreate(!showCreate);
@@ -13,16 +12,18 @@ export default function SideBar() {
   return (
     <>
       <div className="sidenav">
-        <Link to='/'><button>Home</button></Link>
+        <button onClick={() => history.push('/')}>Home</button>
         <button onClick={() => onCreateBudget()}>Add Expense</button>
-        <Link to='/Report'><button>Expense List</button></Link>
-        <Link to='/Settings'><button>Settings</button></Link>
+        <button onClick={() => history.push('/Report')}>Expense List</button>
+        <button onClick={() => history.push('/Settings')}>Settings</button>
       </div>
       {
         showCreate ?
-          <NewBudget onCreateBudget={onCreateBudget} /> :
+          <ExpenseModal onCreateBudget={onCreateBudget} /> :
           null
       }
     </>
   );
 }
+
+export default withRouter(SideBar);

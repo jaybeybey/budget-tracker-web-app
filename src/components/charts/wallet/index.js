@@ -35,22 +35,22 @@ const Wallet = (props) => {
     const getBudgetProgress = budget => {
         let total = 0;
         props.items.filter(item => item.category === budget.category).forEach(item => total += item.amount);
-        return Math.min(Math.round(total *  100 / budget.amount), 100);
+        return Math.min(Math.round(total * 100 / budget.amount), 100);
     }
 
     //render the budget button
     const renderBudget = () => {
         return props.newBudget.map(item => {
             return (
-                <div className="tooltip" key={item.id} >
+                <div className="tooltip-btn" key={item.id}>
                     <div className='new-bud-btn' onDoubleClick={() => onEditBudgetHandle(item.id)}>
                         <button style={{ backgroundColor: `${item.color}` }}>{item.category}</button>
                         <div className="tooltiptext">
-                        <h5>Budget Type <span className='val-color'>{item.category}</span></h5>
-                        <h5>Budget Amount <span className='val-color'>{item.amount}</span></h5>
-                        <ProgressBar value={getBudgetProgress(item)} />
-                        <h6>notes:</h6>
-                        <h5>{item.notes}</h5>
+                            <h5>Budget Type <span className='val-color'>{item.category}</span></h5>
+                            <h5>Budget Amount <span className='val-color'>{item.amount}</span></h5>
+                            <ProgressBar value={getBudgetProgress(item)} />
+                            <h6>notes:</h6>
+                            <h5>{item.notes}</h5>
                         </div>
                     </div>
                 </div>
