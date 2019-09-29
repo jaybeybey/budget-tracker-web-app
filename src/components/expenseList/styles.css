@@ -49,8 +49,6 @@
     font-size: 12px;
 }
 
-.td-remove:hover {
+.td-remove img:hover {
     cursor: pointer;
-    
 }
-

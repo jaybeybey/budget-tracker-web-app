@@ -5,6 +5,8 @@ import './styles.css'
 
 import { updateBudget } from '../../../../store/actions'
 import dropdown_options from '../../../../containers/dropdown_option/category'
+import 'react-notifications-component/dist/theme.css'
+import { store } from 'react-notifications-component';
 
 class EditBudgetMode extends Component {
     state = {
@@ -40,9 +42,25 @@ class EditBudgetMode extends Component {
         this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
         total = total *  100 / this.state.amount;
         if (total >= 100) {
-            alert(`The budget ${this.state.category} exceed 100% of its capacity.`);
+            this.budgetNotification(`The budget ${this.state.category} exceed 100% of its capacity.`);
         }
     };
+
+    budgetNotification = (alert) => {
+        store.addNotification({
+          title: "Notification",
+          message: alert,
+          type: "warning",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 5000,
+            onScreen: true
+          },
+        });
+      }
 
     render() {
         const budgetToEdit = this.props.currentBudget.find(el => el.id === this.props.currentBudgetID);

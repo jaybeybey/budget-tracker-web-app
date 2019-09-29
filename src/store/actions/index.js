@@ -1,7 +1,18 @@
 import uuid from 'uuid';
 
-export const addNewBudget = data => ({
-  type: "ADD_NEW_BUDGET",
+export const addNewExpense = data => ({
+  type: "ADD_NEW_EXPENSE",
+  id: data.id,
+  name: data.name,
+  amount: data.amount,
+  currency: data.currency,
+  date: data.date,
+  category: data.category,
+  notes: data.notes
+});
+
+export const updateExpense = data => ({
+  type: "UPDATE_EXPENSE",
   id: data.id,
   name: data.name,
   amount: data.amount,

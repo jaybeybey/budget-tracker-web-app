@@ -1,25 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 
 import { removeItem } from "../../store/actions";
-import del_img from './delete.png';
+import delImg from './delete.png';
+import settingImg from '../../shared/components/layout/image/settings.png';
+import ExpenseModal from '../expenseModal';
 
 import "./styles.css";
 
-const expensesList = props => {
+const filterItemsBySearch = (items, search) => items.filter((item) => {
+  const hasNameMatch = item.name.toLowerCase().includes(search);
+  const hasCategoryMatch = item.category.toLowerCase().includes(search);
+  const hasDateMatch = moment(item.date).format("MMM Do YY").toLowerCase().includes(search);
+  return hasNameMatch || hasCategoryMatch || hasDateMatch;
+});
+
+const ExpensesList = props => {
   const onRemoveItem = id => {
     props.dispatch(removeItem(id));
   };
-  let filteredExpense = props.items
-    ? props.items.filter(item => {
-      return (
-        item.name.toLowerCase().indexOf(props.search.toLowerCase()) !== -1 ||
-        item.category.toLowerCase().indexOf(props.search.toLowerCase()) !== -1 ||
-        moment(item.date).format("MMM Do YY").toLowerCase().indexOf(props.search.toLowerCase()) !== -1
-      );
-    })
-    : null;
+
+  const [editId, setEditId] = useState(null);
+  const onEditItem = id => setEditId(id);
+  const filteredExpense = filterItemsBySearch(props.items || [], props.search.toLowerCase());
+  
   const renderTableData = () => {
     return props.items
       ? filteredExpense.map(item => {
@@ -31,14 +36,17 @@ const expensesList = props => {
             <td>{category}</td>
             <td>{amount} {props.currency}</td>
             <td>{notes}</td>
-            <td className='td-remove' onClick={() => onRemoveItem(id)}><img src={del_img} alt='delete' /></td>
+            <td className='td-remove'>
+              <img height="15" width="15" src={delImg} alt="delete" onClick={() => onRemoveItem(id)} />
+              <img height="15" width="15" src={settingImg} alt="Edit" onClick={() => onEditItem(id)} />
+            </td>
           </tr>
         );
       })
       : null;
   };
   const renderTableHeader = () => {
-    const header = ["Name", "Date", "Category", "Amount", "Notes", 'Delete'];
+    const header = ["Name", "Date", "Category", "Amount", "Notes", 'Actions'];
     return props.items.length > 0 ? (
       header.map((key, index) => {
         return <th key={index}>{key}</th>;
@@ -58,6 +66,7 @@ const expensesList = props => {
           {renderTableData()}
         </tbody>
       </table>
+      {editId && <ExpenseModal editId={editId} onCreateBudget={() => setEditId(null)} />}
     </div>
   );
 };
@@ -69,7 +78,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(expensesList);
+export default connect(mapStateToProps)(ExpensesList);
 
 /* <div className="expenses-container">
 {props.items.length > 0 ? (

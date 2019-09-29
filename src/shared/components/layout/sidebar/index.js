@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import NewBudget from '../../../../components/newExpense'
+import ExpenseModal from '../../../../components/expenseModal'
 import "./styles.css";
 import {withRouter} from 'react-router-dom';
 
@@ -19,7 +19,7 @@ const SideBar = ({ history }) => {
       </div>
       {
         showCreate ?
-          <NewBudget onCreateBudget={onCreateBudget} /> :
+          <ExpenseModal onCreateBudget={onCreateBudget} /> :
           null
       }
     </>
