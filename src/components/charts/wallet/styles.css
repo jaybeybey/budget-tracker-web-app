@@ -79,14 +79,14 @@
 /*-----------------------------------------------------------------------------*/
 
 /* Tooltip container */
-.tooltip {
+.tooltip-btn {
   position: relative;
   display: inline-block;
   
 }
 
 /* Tooltip text */
-.tooltip .tooltiptext {
+.tooltip-btn .tooltiptext {
   visibility: hidden;
   width: 180px;
   background-color: rgb(167, 155, 155);
@@ -106,7 +106,7 @@
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
+.tooltip-btn:hover .tooltiptext {
   visibility: visible;
 }
 

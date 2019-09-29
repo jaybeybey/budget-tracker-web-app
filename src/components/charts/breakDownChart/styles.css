@@ -50,12 +50,6 @@ p {
     background-color: rgb(238, 173, 68);
 }
 
-
-/* .donut-chart {
-    margin-left: 50px
-} */
-
 .spending-table {
-    margin-top: 30px;
-    margin-right: 280px
+    padding: 20px;
 }

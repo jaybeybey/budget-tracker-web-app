@@ -1,10 +1,5 @@
 .report-container {
-    /* display: flex; */
-    /* border: 2px solid green; */
-    width: 60vw;
-    margin: 0 auto;
     background-color: rgb(177, 196, 178);
-
 }
 
 .gauge-charts {

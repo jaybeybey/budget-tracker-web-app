@@ -42,7 +42,7 @@ const Wallet = (props) => {
     const renderBudget = () => {
         return props.newBudget.map(item => {
             return (
-                <div className="tooltip" key={item.id} >
+                <div className="tooltip-btn" key={item.id} >
                     <div className='new-bud-btn' onDoubleClick={() => onEditBudgetHandle(item.id)}>
                         <button style={{ backgroundColor: `${item.color}` }}>{item.category}</button>
                         <div className="tooltiptext">

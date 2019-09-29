@@ -5,9 +5,13 @@ import "./styles.css";
 
 export default function BreakDownChart() {
   return (
-    <div className='chart-contianer'>
-      <SpendingsTable/>
-      <DonutChart/>
+    <div className='chart-contianer row align-items-center justify-content-center'>
+      <div className="col-md-12 col-lg-6">
+        <SpendingsTable />
+      </div>
+      <div className="col-md-12 col-lg-6">
+        <DonutChart />
+      </div>
     </div>
   )
 }
