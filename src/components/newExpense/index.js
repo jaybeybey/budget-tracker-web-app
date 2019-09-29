@@ -66,11 +66,11 @@ class NewBudget extends Component {
       this.props.dispatch(addNewBudget(newExpense));
       this.props.onCreateBudget();
     }
-    
+
     // Show alert when the budget category exceeds 100%.
     let total = 0;
     this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
-    total = total *  100 / this.state.amount;
+    total = total * 100 / this.state.amount;
     if (total >= 100) {
       alert(`The budget ${this.state.category} exceed 100% of its capacity.`);
     }
@@ -83,28 +83,40 @@ class NewBudget extends Component {
           <button className='x' onClick={this.props.onCreateBudget}>x</button>
           <div className="budget-form">
             <form>
-              <div className='inpt-name-amount'>
-                <label>Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  onChange={e => this.onHandleChange(e)}
-                />
-                <div className="error">{this.state.nameError}</div>
-                <label>Amount</label>
-                <input
-                  type="number"
-                  name="amount"
-                  onChange={e => this.onHandleChange(e)}
-                />
-                <div className="error">{this.state.amountError}</div>
+              <div className="row">
+                <div className="col-6">
+                  <label>Name</label>
+                </div>
+                <div className="col-6">
+                  <input
+                    type="text"
+                    name="name"
+                    onChange={e => this.onHandleChange(e)}
+                  />
+                </div>
+                <div className="col-12">
+                  <div className="error text-center">{this.state.nameError}</div>
+                </div>
+                <div className="col-6">
+                  <label>Amount</label>
+                </div>
+                <div className="col-6">
+                  <input
+                    type="number"
+                    name="amount"
+                    onChange={e => this.onHandleChange(e)}
+                  />
+                </div>
+                <div className="col-12">
+                  <div className="error text-center">{this.state.nameError}</div>
+                </div>
               </div>
               <div className='inpt-date-category'>
                 {/* <label>Category</label> */}
                 <select name="category" onChange={e => this.onHandleChange(e)}>
                   {category}
                 </select>
-                <div className="error">{this.state.categoryError}</div>
+                <div className="error text-center">{this.state.categoryError}</div>
                 {/* <label>Date</label> */}
                 <input
                   type="date"

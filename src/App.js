@@ -10,7 +10,7 @@ const App = props => {
   return (
     <>
       <ReactNotifications />
-      <div className="row no-gutters">
+      <div className="row no-gutters h-100">
         <div className="col-xl-1 col-sm-2 col-3">
           <SideBar />
         </div>
