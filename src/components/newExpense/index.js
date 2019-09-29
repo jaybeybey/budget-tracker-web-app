@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./styles.css";
 import uuid from "uuid";
+import { store } from 'react-notifications-component';
 
 import { addNewBudget } from "../../store/actions";
 
@@ -66,15 +67,32 @@ class NewBudget extends Component {
       this.props.dispatch(addNewBudget(newExpense));
       this.props.onCreateBudget();
     }
-    
+
     // Show alert when the budget category exceeds 100%.
     let total = 0;
     this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
-    total = total *  100 / this.state.amount;
+    total = total * 100 / this.state.amount;
     if (total >= 100) {
-      alert(`The budget ${this.state.category} exceed 100% of its capacity.`);
+      this.budgetNotification(`The budget ${this.state.category} exceed 100% of its capacity.`);
     }
   };
+
+
+  budgetNotification = (alert) => {
+    store.addNotification({
+      title: "Notification",
+      message: alert,
+      type: "danger",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true
+      }
+    });
+  }
 
   render() {
     return (
