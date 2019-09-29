@@ -12,7 +12,7 @@ class NewBudget extends Component {
     id: uuid(),
     name: "",
     amount: 0,
-    date: "",
+    date: new Date().toISOString().slice(0, 10),
     category: "",
     notes: "",
     nameError: "",
@@ -66,10 +66,16 @@ class NewBudget extends Component {
       this.props.dispatch(addNewBudget(newExpense));
       this.props.onCreateBudget();
     }
+    
+    // Show alert when the budget category exceeds 100%.
+    let total = 0;
+    this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
+    total = total *  100 / this.state.amount;
+    if (total >= 100) {
+      alert(`The budget ${this.state.category} exceed 100% of its capacity.`);
+    }
   };
-  dateDefaultVal = () => {
-    return new Date().toISOString().slice(0, 10);
-  }
+
   render() {
     return (
       <div className="ext-budget">
@@ -103,7 +109,7 @@ class NewBudget extends Component {
                 <input
                   type="date"
                   name="date"
-                  defaultValue={this.dateDefaultVal()}
+                  defaultValue={this.state.date}
                   onChange={e => this.onHandleChange(e)}
                 />
                 <div className="error">{this.state.dateError}</div>
@@ -125,4 +131,6 @@ class NewBudget extends Component {
   }
 }
 
-export default connect()(NewBudget);
+const mapStateToProps = state => ({ items: state.budgetReducer });
+
+export default connect(mapStateToProps)(NewBudget);
