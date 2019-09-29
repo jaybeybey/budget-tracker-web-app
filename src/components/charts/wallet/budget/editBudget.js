@@ -34,14 +34,6 @@ class EditBudgetMode extends Component {
     onHandleSave = (data,id) => {
         this.props.dispatch(updateBudget(data, id));
         this.props.onEditBudgetHandle();
-        // Show alert when the budget category exceeds 100%.
-
-        let total = 0;
-        this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
-        total = total *  100 / this.state.amount;
-        if (total >= 100) {
-            alert(`The budget ${this.state.category} exceed 100% of its capacity.`);
-        }
     };
 
     render() {
@@ -95,6 +87,4 @@ class EditBudgetMode extends Component {
     }
 }
 
-const mapStateToProps = state => ({ items: state.budgetReducer });
-
-export default connect(mapStateToProps)(EditBudgetMode);
+export default connect()(EditBudgetMode);
