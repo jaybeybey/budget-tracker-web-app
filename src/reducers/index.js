@@ -68,7 +68,7 @@ const initialState = {
 
 export const budgetReducer = (state = initialState.expenses, action) => {
   switch (action.type) {
-    case "ADD_NEW_BUDGET":
+    case "ADD_NEW_EXPENSE":
       return [
         ...state,
         {
@@ -81,8 +81,21 @@ export const budgetReducer = (state = initialState.expenses, action) => {
           notes: action.notes
         }
       ];
+    case "UPDATE_EXPENSE":
+      return state.map(item => (
+        item.id === action.id ?
+          {
+            id: action.id,
+            name: action.name,
+            amount: Number(action.amount),
+            currency: action.currency,
+            date: action.date,
+            category: action.category,
+            notes: action.notes
+          } : item
+      ));
     case "REMOVE_ITEM":
-      return [...state.filter(item => item.id !== action.id)];
+      return state.filter(item => item.id !== action.id);
     default:
       return state;
   }
@@ -122,15 +135,15 @@ export const newBudget = (state = initialState.budget, action) => {
         : state;
     case 'UPDATE_BUDGET':
       return state.map(item => (
-          item.id === action.id ?
+        item.id === action.id ?
           {
             id: action.id,
             category: action.category,
             color: action.color,
             amount: action.amount,
             notes: action.notes
-          }: item
-        ))
+          } : item
+      ))
     default:
       return state;
   }

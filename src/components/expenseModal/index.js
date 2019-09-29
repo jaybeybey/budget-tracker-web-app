@@ -3,11 +3,16 @@ import { connect } from "react-redux";
 import "./styles.css";
 import uuid from "uuid";
 
-import { addNewBudget } from "../../store/actions";
+import { addNewExpense, updateExpense } from "../../store/actions";
 
-import category from "../../containers/dropdown_option/category";
+import categories from "../../containers/dropdown_option/category";
 
-class NewBudget extends Component {
+class ExpenseModal extends Component {
+
+  static defaultProps = {
+    editId: false,
+  }
+
   state = {
     id: uuid(),
     name: "",
@@ -21,6 +26,16 @@ class NewBudget extends Component {
     dateError: "",
     categoryError: ""
   };
+
+  componentDidMount() {
+    const { editId, items } = this.props;
+    const editBudget = items.find(item => item.id === editId);
+    if (!editBudget)  {
+      return;
+    }
+    this.setState(editBudget);
+  }
+
   validate = () => {
     let nameError = "";
     let amountError = "";
@@ -54,29 +69,48 @@ class NewBudget extends Component {
     }
     return true;
   };
+
   onHandleChange = e => {
     e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
     });
   };
+
   onHandleSave = newExpense => {
-    const inValid = this.validate();
-    if (inValid) {
-      this.props.dispatch(addNewBudget(newExpense));
-      this.props.onCreateBudget();
+    const isValid = this.validate();    
+    if (!isValid) {
+      return;
     }
 
+    let items = this.props.items;
+    const {budgets} = this.props;
+
+    if (this.props.editId) {
+      this.props.dispatch(updateExpense(newExpense));
+      items = items.map(item => item.id === newExpense.id ? newExpense : item);
+    } else  {
+      this.props.dispatch(addNewExpense(newExpense));
+      items = items.concat([newExpense]);
+    }
+    
     // Show alert when the budget category exceeds 100%.
     let total = 0;
-    this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
-    total = total * 100 / this.state.amount;
+    const budget = budgets.find(budget => budget.category === newExpense.category);
+    items.filter(item => item.category === newExpense.category).forEach(item => total += Number(item.amount));
+    total = total * 100 / budget.amount;
     if (total >= 100) {
-      alert(`The budget ${this.state.category} exceed 100% of its capacity.`);
+      alert(`The budget ${newExpense.category} exceed 100% of its capacity.`);
     }
+    
+
+    this.props.onCreateBudget();
   };
 
+  
   render() {
+    const { name, amount, date, category, notes } = this.state;
+
     return (
       <div className="ext-budget">
         <div className="int-budget">
@@ -91,6 +125,7 @@ class NewBudget extends Component {
                   <input
                     type="text"
                     name="name"
+                    value={name}
                     onChange={e => this.onHandleChange(e)}
                   />
                 </div>
@@ -104,6 +139,7 @@ class NewBudget extends Component {
                   <input
                     type="number"
                     name="amount"
+                    value={amount}
                     onChange={e => this.onHandleChange(e)}
                   />
                 </div>
@@ -113,15 +149,15 @@ class NewBudget extends Component {
               </div>
               <div className='inpt-date-category'>
                 {/* <label>Category</label> */}
-                <select name="category" onChange={e => this.onHandleChange(e)}>
-                  {category}
+                <select name="category" value={category} onChange={e => this.onHandleChange(e)}>
+                  {categories}
                 </select>
                 <div className="error text-center">{this.state.categoryError}</div>
                 {/* <label>Date</label> */}
                 <input
                   type="date"
                   name="date"
-                  defaultValue={this.state.date}
+                  value={date}
                   onChange={e => this.onHandleChange(e)}
                 />
                 <div className="error">{this.state.dateError}</div>
@@ -130,6 +166,7 @@ class NewBudget extends Component {
                 <label>Notes</label>
                 <textarea
                   name="notes"
+                  value={notes}
                   onChange={e => this.onHandleChange(e)}
                   placeholder="type here..."
                 ></textarea>
@@ -143,6 +180,6 @@ class NewBudget extends Component {
   }
 }
 
-const mapStateToProps = state => ({ items: state.budgetReducer });
+const mapStateToProps = state => ({ items: state.budgetReducer, budgets: state.newBudget });
 
-export default connect(mapStateToProps)(NewBudget);
+export default connect(mapStateToProps)(ExpenseModal);
