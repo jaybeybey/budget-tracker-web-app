@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./styles.css";
 import uuid from "uuid";
+
 import { store } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css'
 
 import { addNewBudget } from "../../store/actions";
 
@@ -82,7 +84,7 @@ class NewBudget extends Component {
     store.addNotification({
       title: "Notification",
       message: alert,
-      type: "danger",
+      type: "warning",
       insert: "top",
       container: "top-right",
       animationIn: ["animated", "fadeIn"],
@@ -90,7 +92,7 @@ class NewBudget extends Component {
       dismiss: {
         duration: 5000,
         onScreen: true
-      }
+      },
     });
   }
 
