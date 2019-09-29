@@ -7,7 +7,10 @@ import delImg from './delete.png';
 import settingImg from '../../shared/components/layout/image/settings.png';
 import ExpenseModal from '../expenseModal';
 
+import BootstrapTable from 'react-bootstrap-table-next';
 import "./styles.css";
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+
 
 const filterItemsBySearch = (items, search) => items.filter((item) => {
   const hasNameMatch = item.name.toLowerCase().includes(search);
@@ -16,56 +19,36 @@ const filterItemsBySearch = (items, search) => items.filter((item) => {
   return hasNameMatch || hasCategoryMatch || hasDateMatch;
 });
 
+
 const ExpensesList = props => {
-  const onRemoveItem = id => {
-    props.dispatch(removeItem(id));
-  };
+
+  const filteredExpense = filterItemsBySearch(props.items || [], props.search.toLowerCase());
+  const onRemoveItem = id => props.dispatch(removeItem(id));
+  const onEditItem = id => setEditId(id);
 
   const [editId, setEditId] = useState(null);
-  const onEditItem = id => setEditId(id);
-  const filteredExpense = filterItemsBySearch(props.items || [], props.search.toLowerCase());
-  
-  const renderTableData = () => {
-    return props.items
-      ? filteredExpense.map(item => {
-        const { id, name, date, category, amount, notes } = item;
-        return (
-          <tr key={id}>
-            <td>{name}</td>
-            <td>{moment(date).format("MMM Do YY")}</td>
-            <td>{category}</td>
-            <td>{amount} {props.currency}</td>
-            <td>{notes}</td>
-            <td className='td-remove'>
-              <img height="15" width="15" src={delImg} alt="delete" onClick={() => onRemoveItem(id)} />
-              <img height="15" width="15" src={settingImg} alt="Edit" onClick={() => onEditItem(id)} />
-            </td>
-          </tr>
-        );
-      })
-      : null;
-  };
-  const renderTableHeader = () => {
-    const header = ["Name", "Date", "Category", "Amount", "Notes", 'Actions'];
-    return props.items.length > 0 ? (
-      header.map((key, index) => {
-        return <th key={index}>{key}</th>;
-      })
-    ) : (
-        <th className="else-container">You have no expenses</th>
-      );
-  };
+
+  const tableColumns = [
+    { dataField: 'name',  text: 'Name', sort: true },
+    { dataField: 'date',  text: 'Date', sort: true, formatter: dt => moment(dt).format("MMM Do YY") },
+    { dataField: 'category',  text: 'Category', sort: true },
+    { dataField: 'amount',  text: 'Amount', sort: true, formatter: am => `${am} ${props.currency}` },
+    { dataField: 'notes',  text: 'Notes', sort: true},
+    { dataField: 'actions',  classes: 'td-remove', isDummyField: true, text: 'Actions', formatter: (col, row) => (
+      <>
+        <img src={delImg} alt="delete" onClick={() => onRemoveItem(row.id)} />
+        <img src={settingImg} alt="Edit" onClick={() => onEditItem(row.id)} />
+      </>
+    )},
+  ];
 
   return (
     <div className="expenses-container">
-      <table
-        className={props.items.length > 0 ? "expense-props" : "else-container"}
-      >
-        <tbody>
-          <tr>{renderTableHeader()}</tr>
-          {renderTableData()}
-        </tbody>
-      </table>
+      {filteredExpense.length != 0 ? (
+        <BootstrapTable keyField='id' data={filteredExpense} columns={tableColumns} classes="expense-props" bootstrap4 />
+      ) : (
+        <h2 className="text-center p-2">You have no expenses</h2>
+      )}
       {editId && <ExpenseModal editId={editId} onCreateBudget={() => setEditId(null)} />}
     </div>
   );
