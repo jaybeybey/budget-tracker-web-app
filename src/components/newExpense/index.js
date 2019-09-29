@@ -4,7 +4,6 @@ import "./styles.css";
 import uuid from "uuid";
 
 import { store } from 'react-notifications-component';
-import 'react-notifications-component/dist/theme.css'
 
 import { addNewBudget } from "../../store/actions";
 
