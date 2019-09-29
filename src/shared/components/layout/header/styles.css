@@ -30,9 +30,12 @@
     padding-left: 10px;
 }
 
-/* .user-container {
-    
-} */
+@media screen and (max-width: 780px) {
+    .user-container h3 {
+        font-size: 12px;
+    }
+}
+
 
 /* .expense-btn button {
     -moz-box-shadow: inset 0px 1px 0px 0px #caefab;
