@@ -17,19 +17,13 @@ class Filter extends Component {
         return (
             <>
                 <div className='filter'>
-                    <form>
-                        <label>
-                            <h6>Search</h6>
-                            <input type='text'
-                                value={this.state.search}
-                                onChange={this.updateSearch}
-                            />
-                        </label>
-                    </form>
+                    <h6>Search</h6>
+                    <input type='text'
+                        value={this.state.search}
+                        onChange={this.updateSearch}
+                    />
                 </div>
-                <>
-                    <Expenses search={this.state.search}/>
-                </>
+                <Expenses search={this.state.search} />
             </>
         )
     }

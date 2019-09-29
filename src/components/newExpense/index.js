@@ -103,28 +103,40 @@ class NewBudget extends Component {
           <button className='x' onClick={this.props.onCreateBudget}>x</button>
           <div className="budget-form">
             <form>
-              <div className='inpt-name-amount'>
-                <label>Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  onChange={e => this.onHandleChange(e)}
-                />
-                <div className="error">{this.state.nameError}</div>
-                <label>Amount</label>
-                <input
-                  type="number"
-                  name="amount"
-                  onChange={e => this.onHandleChange(e)}
-                />
-                <div className="error">{this.state.amountError}</div>
+              <div className="row">
+                <div className="col-6">
+                  <label>Name</label>
+                </div>
+                <div className="col-6">
+                  <input
+                    type="text"
+                    name="name"
+                    onChange={e => this.onHandleChange(e)}
+                  />
+                </div>
+                <div className="col-12">
+                  <div className="error text-center">{this.state.nameError}</div>
+                </div>
+                <div className="col-6">
+                  <label>Amount</label>
+                </div>
+                <div className="col-6">
+                  <input
+                    type="number"
+                    name="amount"
+                    onChange={e => this.onHandleChange(e)}
+                  />
+                </div>
+                <div className="col-12">
+                  <div className="error text-center">{this.state.nameError}</div>
+                </div>
               </div>
               <div className='inpt-date-category'>
                 {/* <label>Category</label> */}
                 <select name="category" onChange={e => this.onHandleChange(e)}>
                   {category}
                 </select>
-                <div className="error">{this.state.categoryError}</div>
+                <div className="error text-center">{this.state.categoryError}</div>
                 {/* <label>Date</label> */}
                 <input
                   type="date"

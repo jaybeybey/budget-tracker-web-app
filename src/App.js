@@ -1,23 +1,26 @@
-import React from 'react';
-import ReactNotifications from 'react-notifications-component';
+import React from "react";
+import ReactNotifications from "react-notifications-component";
 
-import './App.css';
+import "./App.css";
 
-import Content from './shared/components/layout/Content'
-import Header from './shared/components/layout/header'
-import SideBar from './shared/components/layout/sidebar';
+import Header from "./shared/components/layout/header"
+import SideBar from "./shared/components/layout/sidebar";
 
 const App = props => {
   return (
     <>
       <ReactNotifications />
-      <div className='App' >
-        <SideBar />
-        <div className='main-container'>
-          <Header />
-          <Content>
-            {props.children}
-          </Content>
+      <div className="row no-gutters h-100">
+        <div className="col-xl-1 col-sm-2 col-3">
+          <SideBar />
+        </div>
+        <div className="col-xl-11 col-sm-10 col-9">
+          <div className="main-container">
+            <Header />
+            <main className="graph-container">
+              {props.children}
+            </main>
+          </div>
         </div>
       </div>
     </>

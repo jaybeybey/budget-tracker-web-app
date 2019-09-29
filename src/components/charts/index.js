@@ -19,16 +19,20 @@ const Report = (props) => {
     return (
         <>
             <Wallet />
-            <div className='report-container'>
-                <div className='gauge-charts'>
-                    <SpendingChart totalSpending={reducedTotalSpending} income={income} />
-                    <SavingsChart />
-                    <BalanceChart totalSaving={totalSaving} income={income} />
+            <div className='report-container container'>
+                <div className='gauge-charts row'>
+                    <div className="col-md-12 col-lg-3">
+                        <SpendingChart totalSpending={reducedTotalSpending} income={income} />
+                    </div>
+                    <div className="col-md-12 col-lg-3">
+                        <SavingsChart />
+                    </div>
+                    <div className="col-md-12 col-lg-3">
+                        <BalanceChart totalSaving={totalSaving} income={income} />
+                    </div>
                 </div>
-                <div>
-                    <BreakDownChart />
-                    <MixedChart />
-                </div>
+                <BreakDownChart />
+                <MixedChart />
             </div>
         </>
     )

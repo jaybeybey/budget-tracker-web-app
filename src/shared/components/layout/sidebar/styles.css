@@ -1,13 +1,9 @@
 .sidenav {
-  height: 100vh;
-  width: 5vw;
-  z-index: 1;
-  top: 0;
-  left: 0;
   background-color: #3A4851;
   padding-top: 20px;
-  overflow: auto;
-
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .sidenav button {
