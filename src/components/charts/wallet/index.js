@@ -32,6 +32,12 @@ const Wallet = (props) => {
         setCurrentBudgetId(id)
     }
 
+    const getBudgetProgress = budget => {
+        let total = 0;
+        props.items.filter(item => item.category === budget.category).forEach(item => total += item.amount);
+        return Math.min(Math.round(total *  100 / budget.amount), 100);
+    }
+
     //render the budget button
     const renderBudget = () => {
         return props.newBudget.map(item => {
@@ -42,7 +48,7 @@ const Wallet = (props) => {
                         <div className="tooltiptext">
                         <h5>Budget Type <span className='val-color'>{item.category}</span></h5>
                         <h5>Budget Amount <span className='val-color'>{item.amount}</span></h5>
-                        <ProgressBar value='75'/>
+                        <ProgressBar value={getBudgetProgress(item)} />
                         <h6>notes:</h6>
                         <h5>{item.notes}</h5>
                         </div>

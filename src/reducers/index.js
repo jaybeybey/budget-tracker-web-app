@@ -4,7 +4,7 @@ const initialState = {
   expenses: [{
     id: uuid(),
     name: "coop",
-    amount: 140,
+    amount: 150,
     currency: "CHF",
     date: "2019-09-15",
     category: "Grocery",
@@ -74,7 +74,7 @@ export const budgetReducer = (state = initialState.expenses, action) => {
         {
           id: action.id,
           name: action.name,
-          amount: action.amount,
+          amount: Number(action.amount),
           currency: action.currency,
           date: action.date,
           category: action.category,
