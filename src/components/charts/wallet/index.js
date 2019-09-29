@@ -69,9 +69,10 @@ const Wallet = (props) => {
         }) : null
     }
 
-    useEffect(() => {
-        console.log(props.newBudget)
-    })
+    
+    // useEffect(() => {
+    //     console.log(props.newBudget)
+    // })
 
     return (
         <>
@@ -156,7 +157,7 @@ export default connect(mapStateToProps)(Wallet)
 
 
 
-        // const budgetNotification = () => {
+    //     const budgetNotification = () => {
     //     store.addNotification({
     //         title: "Notification",
     //         message: "Budget limit reached",
