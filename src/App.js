@@ -11,10 +11,10 @@ const App = props => {
     <>
       <ReactNotifications />
       <div className="row no-gutters h-100">
-        <div className="col-xl-1 col-sm-2 col-3">
+        <div className="col-xl-1 col-2">
           <SideBar />
         </div>
-        <div className="col-xl-11 col-sm-10 col-9">
+        <div className="col-xl-11 col-10">
           <div className="main-container">
             <Header />
             <main className="graph-container">

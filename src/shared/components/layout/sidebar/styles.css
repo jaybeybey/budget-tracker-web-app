@@ -18,6 +18,12 @@
   border: none;
 }
 
+@media screen and (max-width: 780px) {
+  .sidenav button {
+    font-size: 8px;
+  }
+}
+
 .sidenav img:hover {
   transition: transform .2s;
   max-height: 45px;
