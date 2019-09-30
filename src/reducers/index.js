@@ -152,13 +152,13 @@ export const newBudget = (state = initialState.budget, action) => {
 export const newSavings = (state = initialState.savings, action) => {
   switch (action.type) {
     case 'NEW_SAVINGS':
-      let savingsExist = state.find(el => el.savingsName === action.savingsName);
+      let savingsExist = state.find(el => el.name === action.name);
       if (!savingsExist) {
         return [
           ...state,
           {
             id: action.id,
-            savingsName: action.savingsName,
+            name: action.name,
             color: action.color,
             amount: action.amount,
             notes: action.notes
