@@ -7,7 +7,7 @@ import { newSavings } from '../../../../store/actions'
 
 class Budget extends Component {
     state = {
-        savingsName: '',
+        name: '',
         color: '',
         amount: '',
         notes: ''
@@ -30,9 +30,9 @@ class Budget extends Component {
                     <form>
                         <span className="formtext">&#x3C;SAVINGS/&#x3E;</span>
                         <div className='name-color'>
-                            <label name='savingsName'>Name</label>
+                            <label>Name</label>
                             <input
-                                name='savingsName'
+                                name='name'
                                 type="text"
                                 placeholder="Savings Name"
                                 onChange={e => this.onHandleChange(e)}

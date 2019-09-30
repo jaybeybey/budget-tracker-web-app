@@ -1,115 +1,86 @@
-import React, { Component } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import ReactApexChart from "react-apexcharts";
 
-export default class MixedChart extends Component {
-            
-  constructor(props) {
-    super(props);
+const createBudgetList = (initialBudget, expenses, savings) => {
+  const list = [initialBudget];
+  let budget = initialBudget;
+  expenses.forEach((expense) => {
+    budget -= Number(expense.amount);
+    list.push(budget);
+  });
+  savings.forEach((saving) => {
+    budget -= Number(saving.amount);
+    list.push(budget);
+  });
+  return list;
+};
 
-    this.state = {
-      options: {
+const Chart = ({ initialBudget, expenses, savings }) => {
+  const spendArray = expenses.concat(savings).map(item => `Spent ${item.amount} ${item.currency || ''} in "${item.name}"`);
+  spendArray.unshift('Initial Budget');
+
+  const budgetList = createBudgetList(initialBudget, expenses, savings);
+  return (
+    <ReactApexChart
+      options={{
         plotOptions: {
           bar: {
             dataLabels: {
-              position: 'top', // top, center, bottom
+              position: 'top',
             },
           }
         },
         dataLabels: {
           enabled: true,
-          formatter: function (val) {
-            return val + "%";
-          },
           offsetY: -20,
           style: {
             fontSize: '12px',
             colors: ["#304758"]
           }
         },
-        xaxis: {
-          categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-          position: 'top',
-          labels: {
-            offsetY: -18,
-          },
-          axisBorder: {
-            show: false
-          },
-          axisTicks: {
-            show: false
-          },
-          crosshairs: {
-            fill: {
-              type: 'gradient',
-              gradient: {
-                colorFrom: '#D8E3F0',
-                colorTo: '#BED1E6',
-                stops: [0, 100],
-                opacityFrom: 0.4,
-                opacityTo: 0.5,
-              }
-            }
-          },
-          tooltip: {
-            enabled: true,
-            offsetY: -35,
-          }
-        },
-        fill: {
-          gradient: {
-            shade: 'light',
-            type: "horizontal",
-            shadeIntensity: 0.25,
-            gradientToColors: undefined,
-            inverseColors: true,
-            opacityFrom: 1,
-            opacityTo: 1,
-            stops: [50, 0, 100, 100]
-          },
-        },
         yaxis: {
-          axisBorder: {
-            show: false
-          },
-          axisTicks: {
-            show: false,
-          },
-          labels: {
-            show: false,
-            formatter: function (val) {
-              return val + "%";
-            }
-          }
+          axisBorder: {show: false},
+          axisTicks: {show: false},
+          crosshairs: {show: false},
+          labels: {show: false},
+        },
+        xaxis: {
+          categories: spendArray,
+          axisBorder: {show: false},
+          axisTicks: {show: false},
+          crosshairs:{show: false},
+          labels: {show: false},
         },
         title: {
-          text: 'Monthly Inflation in Argentina, 2002',
+          text: 'Initial budget changes, including expenses and savings.',
+          offsetY: 341,
           floating: true,
-          offsetY: 320,
           align: 'center',
           style: {
             color: '#444'
           }
         }
-      },
-      series: [{
-        name: 'Inflation',
-        data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
-      }],
-    }
-  }
-
-  render() {
-    return (
-      
-
-      <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height="350" />
-      </div>
-
-
-    );
-  }
+      }}
+      series={[{
+        name: 'Budget',
+        data: budgetList
+      }]}
+      type="bar"
+      height="360"
+    />
+  )
 }
+
+const mapStateToProps = state => ({
+  expenses: state.budgetReducer,
+  savings: state.newSavings,
+  initialBudget: state.user.income,
+});
+
+export default connect(mapStateToProps)(Chart);
+
+
   //   constructor(props) {
   //     super(props);
 
@@ -168,7 +139,7 @@ export default class MixedChart extends Component {
 
   //   render() {
   //     return (
-        
+
 
   //       <div id="chart">
   //         <ReactApexChart options={this.state.options} series={this.state.series} type="line" height="350" />
