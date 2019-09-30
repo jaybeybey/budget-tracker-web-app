@@ -6,14 +6,9 @@ import "./App.css";
 import Header from "./shared/components/layout/header"
 import SideBar from "./shared/components/layout/sidebar";
 
-import './App.css';
-import 'react-notifications-component/dist/theme.css'
-
-
-
 const App = props => {
   return (
-    <div className="app-container">
+    <>
       <ReactNotifications />
       <div className="row no-gutters h-100">
         <div className="col-xl-1 col-2">
@@ -28,7 +23,7 @@ const App = props => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

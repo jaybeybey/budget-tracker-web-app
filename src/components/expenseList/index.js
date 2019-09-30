@@ -44,7 +44,7 @@ const ExpensesList = props => {
 
   return (
     <div className="expenses-container">
-      {filteredExpense.length !== 0 ? (
+      {filteredExpense.length != 0 ? (
         <BootstrapTable keyField='id' data={filteredExpense} columns={tableColumns} classes="expense-props" bootstrap4 />
       ) : (
         <h2 className="text-center p-2">You have no expenses</h2>
