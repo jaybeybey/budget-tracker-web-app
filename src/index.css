@@ -15,10 +15,6 @@ body {
     font-family: 'Proza Libre', sans-serif;
 }
 
-.graph-container {
-    height: calc(100% - 66px);
-};
-
 .root,
 .App {
     height: 100%;

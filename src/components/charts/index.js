@@ -19,7 +19,7 @@ const Report = (props) => {
     return (
         <>
             <Wallet />
-            <div className='report-container container'>
+            <div className='report-container container overflow-hidden'>
                 <div className='gauge-charts row'>
                     <div className="col-md-12 col-lg-3">
                         <SpendingChart totalSpending={reducedTotalSpending} income={income} />
