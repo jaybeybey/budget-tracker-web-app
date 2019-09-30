@@ -2,10 +2,14 @@
   Global styles
 */
 
+/*
+ * Little trick for REM-based design.
+ * See: https://stackoverflow.com/questions/28988445/css-62-5-why-do-developers-use-it
+*/
 html {
     font-size: 62.5%;
 }
-  
+
 html,
 body {
     margin: 0;
@@ -16,14 +20,9 @@ body {
 }
 
 .root,
-.App {
+.app-container {
     height: 100%;
     width: 100%;
-}
-
-.App {
-    display: flex;
-    flex-shrink: 0;
 }
 
 * {

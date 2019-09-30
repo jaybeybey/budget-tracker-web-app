@@ -42,16 +42,14 @@ const Wallet = (props) => {
     const renderBudget = () => {
         return props.newBudget.map(item => {
             return (
-                <div className="tooltip-btn" key={item.id}>
-                    <div className='new-bud-btn' onDoubleClick={() => onEditBudgetHandle(item.id)}>
-                        <button style={{ backgroundColor: `${item.color}` }}>{item.category}</button>
-                        <div className="tooltiptext">
-                            <h5>Budget Type <span className='val-color'>{item.category}</span></h5>
-                            <h5>Budget Amount <span className='val-color'>{item.amount}</span></h5>
-                            <ProgressBar value={getBudgetProgress(item)} />
-                            <h6>notes:</h6>
-                            <h5>{item.notes}</h5>
-                        </div>
+                <div className="tooltip-btn" key={item.id} onDoubleClick={() => onEditBudgetHandle(item.id)}>
+                    <button className="budget-btn" style={{ backgroundColor: `${item.color}` }}>{item.category}</button>
+                    <div className="tooltiptext">
+                        <h5>Budget Type <span className='val-color'>{item.category}</span></h5>
+                        <h5>Budget Amount <span className='val-color'>{item.amount}</span></h5>
+                        <ProgressBar value={getBudgetProgress(item)} />
+                        <h6>notes:</h6>
+                        <h5>{item.notes}</h5>
                     </div>
                 </div>
             )
@@ -63,13 +61,13 @@ const Wallet = (props) => {
         return props.newSavings ? props.newSavings.map(item => {
             return (
                 <div className='new-bud-btn' key={item.id}>
-                    <button style={{ backgroundColor: `${item.color}` }}>{item.name}</button>
+                    <button className="budget-btn" style={{ backgroundColor: `${item.color}` }}>{item.name}</button>
                 </div>
             )
         }) : null
     }
 
-    
+
     // useEffect(() => {
     //     console.log(props.newBudget)
     // })
@@ -78,9 +76,7 @@ const Wallet = (props) => {
         <>
             <div className='top-btns'>
                 <div className="dropdown">
-                    <div>
-                        <button className="dropbtn">Wallet</button>
-                    </div>
+                    <button className="budget-btn">Wallet</button>
                     <div className="dropdown-content">
                         <button onClick={() => onBudgetModal()}>Budget</button>
                         <button onClick={() => onSavingsModal()}>Savings</button>
