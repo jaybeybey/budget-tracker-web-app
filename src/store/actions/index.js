@@ -47,7 +47,7 @@ export const newBudget = data => ({
 export const newSavings = data => ({
   type: 'NEW_SAVINGS',
   id: uuid(),
-  savingsName: data.savingsName,
+  name: data.name,
   color: data.color,
   amount: data.amount,
   notes: data.notes

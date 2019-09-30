@@ -63,7 +63,7 @@ const Wallet = (props) => {
         return props.newSavings ? props.newSavings.map(item => {
             return (
                 <div className='new-bud-btn' key={item.id}>
-                    <button style={{ backgroundColor: `${item.color}` }}>{item.savingsName}</button>
+                    <button style={{ backgroundColor: `${item.color}` }}>{item.name}</button>
                 </div>
             )
         }) : null
