@@ -97,16 +97,19 @@ class ExpenseModal extends Component {
       items = items.concat([newExpense]);
     }
 
+    this.props.onCreateBudget();
+
     // Show alert when the budget category exceeds 100%.
     let total = 0;
+
+    // Expenses MAY be registered to a budget that does not exist.
     const budget = budgets.find(budget => budget.category === newExpense.category);
+    if (!budget) return;
     items.filter(item => item.category === newExpense.category).forEach(item => total += Number(item.amount));
     total = total * 100 / budget.amount;
     if (total >= 100) {
       this.budgetNotification(`The budget ${this.state.category} exceed 100% of its capacity.`);
     }
-
-    this.props.onCreateBudget();
   };
 
   budgetNotification = (alert) => {
