@@ -1,0 +1,18 @@
+.mixed-chart-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.mixed-chart {
+    width: 50%;
+}
+
+@media screen and (max-width: 780px) {
+    .mixed-chart {
+        width: 100%;
+    }
+}

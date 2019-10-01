@@ -45,7 +45,7 @@ const spendingsTable = (props) => {
                     </div>
                     {renderTable()}
                     <div className="total-td">Spendings</div>
-                    <p>{totalAmount()}</p>
+                    <div className="total-td">{totalAmount()}</div>
                 </div>
             </div>
         </div>
