@@ -1,12 +1,8 @@
 .setting-container {
     border: 2px solid red;
-    max-width: 60%;
     background-color: antiquewhite;
-
-    width: 1300px;
 	margin: 10px auto;
-    text-align: left;
-    height: 80vh;
     border-radius: 25px;
     padding: 10px;
+    width: 280px;
 }

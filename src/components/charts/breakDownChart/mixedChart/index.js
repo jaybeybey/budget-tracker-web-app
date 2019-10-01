@@ -1,7 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import ReactApexChart from "react-apexcharts";
+import './styles.css';
 
+/**
+ * Given the initial budget, the expenses and savings, creates
+ * an array in which the budget changes based on the expenses
+ * and savings.
+ */
 const createBudgetList = (initialBudget, expenses, savings) => {
   const list = [initialBudget];
   let budget = initialBudget;
@@ -16,59 +22,62 @@ const createBudgetList = (initialBudget, expenses, savings) => {
   return list;
 };
 
-const Chart = ({ initialBudget, expenses, savings }) => {
-  const spendArray = expenses.concat(savings).map(item => `Spent ${item.amount} ${item.currency || ''} in "${item.name}"`);
-  spendArray.unshift('Initial Budget');
+/**
+ * Given the expenses and savings, join them together, and creates an array
+ * which contains a string - the formatted amount spent.
+ * @example: `Spent 115 CHR in Cola`
+ */
+const createSpendArray = (expenses, savings) =>
+  expenses.concat(savings).map(item => `Spent ${item.amount} ${item.currency || ''} in "${item.name}"`);
 
+const Chart = ({ initialBudget, expenses, savings }) => {
   const budgetList = createBudgetList(initialBudget, expenses, savings);
+  const spendArray = createSpendArray(expenses, savings);
+  spendArray.unshift('Initial Budget');
   return (
-    <ReactApexChart
-      options={{
-        plotOptions: {
-          bar: {
-            dataLabels: {
-              position: 'top',
+    <div className="mixed-chart-container">
+      <div className="mixed-chart">
+        <ReactApexChart
+          options={{
+            plotOptions: {
+              bar: {
+                dataLabels: {
+                  position: 'top',
+                },
+              }
             },
-          }
-        },
-        dataLabels: {
-          enabled: true,
-          offsetY: -20,
-          style: {
-            fontSize: '12px',
-            colors: ["#304758"]
-          }
-        },
-        yaxis: {
-          axisBorder: {show: false},
-          axisTicks: {show: false},
-          crosshairs: {show: false},
-          labels: {show: false},
-        },
-        xaxis: {
-          categories: spendArray,
-          axisBorder: {show: false},
-          axisTicks: {show: false},
-          crosshairs:{show: false},
-          labels: {show: false},
-        },
-        title: {
-          text: 'Initial budget changes, including expenses and savings.',
-          offsetY: 341,
-          floating: true,
-          align: 'center',
-          style: {
-            color: '#444'
-          }
-        }
-      }}
-      series={[{
-        name: 'Budget',
-        data: budgetList
-      }]}
-      type="bar"
-      height="360"
-    />
+            dataLabels: {
+              enabled: true,
+              offsetY: -20,
+              style: {
+                fontSize: '12px',
+                colors: ["#304758"]
+              }
+            },
+            yaxis: {
+              axisBorder: { show: false },
+              axisTicks: { show: false },
+              crosshairs: { show: false },
+              labels: { show: false },
+            },
+            xaxis: {
+              categories: spendArray,
+              axisBorder: { show: false },
+              axisTicks: { show: false },
+              crosshairs: { show: false },
+              labels: { show: false },
+            },
+            chart: { toolbar: { show: false } },
+          }}
+          series={[{
+            name: 'Budget',
+            data: budgetList
+          }]}
+          type="bar"
+        />
+      </div>
+      <h3 className="text-center">Initial budget changes, including expenses and savings.</h3>
+    </div>
   )
 }
 
