@@ -16,16 +16,17 @@ class EditBudgetMode extends Component {
         amount: '',
         notes: ''
     }
-    // componentDidMount=()=>{
-    //     const budgetToEdit = this.props.currentBudget.find(el => el.id === this.props.currentBudgetID);
-    //     const { category, color, amount, notes } = budgetToEdit;
-    //     this.setState({
-    //         category: category,
-    //         color: color,
-    //         amount: amount,
-    //         notes: notes
-    //     })
-    // }
+
+    componentDidMount=()=>{
+        const budgetToEdit = this.props.currentBudget.find(el => el.id === this.props.currentBudgetID);
+        const { category, color, amount, notes } = budgetToEdit;
+        this.setState({
+            category: category,
+            color: color,
+            amount: amount,
+            notes: notes
+        })
+    }
     
     onHandleChange = e => {
         e.preventDefault();
@@ -63,8 +64,8 @@ class EditBudgetMode extends Component {
       }
 
     render() {
-        const budgetToEdit = this.props.currentBudget.find(el => el.id === this.props.currentBudgetID);
-        const { category, color, amount, notes } = budgetToEdit;
+        // const budgetToEdit = this.props.currentBudget.find(el => el.id === this.props.currentBudgetID);
+        // const { category, color, amount, notes } = budgetToEdit;
         return (
             <div className='ext-budget-modal'>
                 <div className='int-budget-edit-modal'>
@@ -76,7 +77,7 @@ class EditBudgetMode extends Component {
                             <input
                                 type="color"
                                 name='color'
-                                // value={this.state.color}
+                                value={this.state.color}
                                 onChange={e => this.onHandleChange(e)}
                             />
                         </div>
@@ -85,7 +86,7 @@ class EditBudgetMode extends Component {
                             <select
                                 name='category'
                                 onChange={e => this.onHandleChange(e)}
-                                // value={this.state.category}
+                                value={this.state.category}
                             >
                                 {dropdown_options}
                             </select>
@@ -94,12 +95,12 @@ class EditBudgetMode extends Component {
                         <input
                             name='amount'
                             type="number"
-                            // value={this.state.amount}
+                            value={this.state.amount}
                             onChange={e => this.onHandleChange(e)}
                         />
                         <textarea
                             name='notes'
-                            // value={this.state.notes}
+                            value={this.state.notes}
                             placeholder="Budget description..."
                             onChange={e => this.onHandleChange(e)}
                         />
