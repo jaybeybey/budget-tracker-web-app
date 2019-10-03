@@ -1,5 +1,7 @@
 import uuid from 'uuid';
 
+const currentDate = new Date();
+
 const initialState = {
   expenses: [{
     id: uuid(),
@@ -12,6 +14,86 @@ const initialState = {
   }, {
     id: uuid(),
     name: "school",
+    amount: 120,
+    currency: "CHF",
+    date: "2019-09-12",
+    category: "Fees",
+    notes: "notes"
+  }, {
+    id: uuid(),
+    name: "Bowling",
+    amount: 350,
+    currency: "CHF",
+    date: "2019-09-12",
+    category: "Fees",
+    notes: "notes"
+  }, {
+    id: uuid(),
+    name: "Water",
+    amount: 550,
+    currency: "CHF",
+    date: "2019-09-12",
+    category: "Fees",
+    notes: "notes"
+  }, {
+    id: uuid(),
+    name: "House",
+    amount: 120,
+    currency: "CHF",
+    date: "2019-09-12",
+    category: "Fees",
+    notes: "notes"
+  }, {
+    id: uuid(),
+    name: "Ice Cream",
+    amount: 120,
+    currency: "CHF",
+    date: "2019-09-12",
+    category: "Fees",
+    notes: "notes"
+  }, {
+    id: uuid(),
+    name: "Car",
+    amount: 120,
+    currency: "CHF",
+    date: "2019-09-12",
+    category: "Fees",
+    notes: "notes"
+  }, {
+    id: uuid(),
+    name: "Electricity",
+    amount: 120,
+    currency: "CHF",
+    date: "2019-09-12",
+    category: "Fees",
+    notes: "notes"
+  }, {
+    id: uuid(),
+    name: "College",
+    amount: 120,
+    currency: "CHF",
+    date: "2019-09-12",
+    category: "Fees",
+    notes: "notes"
+  }, {
+    id: uuid(),
+    name: "Internet",
+    amount: 120,
+    currency: "CHF",
+    date: "2019-09-12",
+    category: "Fees",
+    notes: "notes"
+  }, {
+    id: uuid(),
+    name: "Phone",
+    amount: 120,
+    currency: "CHF",
+    date: "2019-09-12",
+    category: "Fees",
+    notes: "notes"
+  }, {
+    id: uuid(),
+    name: "Elevator",
     amount: 120,
     currency: "CHF",
     date: "2019-09-12",
@@ -46,7 +128,8 @@ const initialState = {
     firstName: 'FirstName',
     lastName: 'LastName',
     income: 4000,
-    defaultCurrency: 'CHF'
+    defaultCurrency: 'CHF',
+    currentMonth: `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}`,
   },
   budget: [
     {
@@ -106,12 +189,15 @@ export const usersReducer = (state = initialState.user, action) => {
     case 'UPDATE_USER':
       return (
         {
+          ...state,
           firstName: action.firstName,
           lastName: action.lastName,
           income: action.income,
           defaultCurrency: action.defaultCurrency
         }
-      )
+      );
+    case 'SET_CURRENT_BUDGET_MONTH':
+      return ({ ...state, currentMonth: action.currentMonth });
     default:
       return state;
   }

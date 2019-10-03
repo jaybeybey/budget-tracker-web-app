@@ -60,4 +60,9 @@ export const updateBudget = (data,id) => ({
   color: data.color,
   amount: data.amount,
   notes: data.notes
-})
+});
+
+export const setCurrentBudgetMonth = (currentMonth) => ({
+  type: "SET_CURRENT_BUDGET_MONTH",
+  currentMonth,
+});

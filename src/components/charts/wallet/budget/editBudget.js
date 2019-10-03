@@ -7,6 +7,7 @@ import { updateBudget } from '../../../../store/actions'
 import dropdown_options from '../../../../containers/dropdown_option/category'
 import 'react-notifications-component/dist/theme.css'
 import { store } from 'react-notifications-component';
+import { FormInput, FormGroup, FormSelect, FormTextArea, FormButton } from '../../../forms';
 
 class EditBudgetMode extends Component {
     state = {
@@ -16,32 +17,31 @@ class EditBudgetMode extends Component {
         amount: '',
         notes: ''
     }
+    // componentDidMount=()=>{
+    //     const budgetToEdit = this.props.currentBudget.find(el => el.id === this.props.currentBudgetID);
+    //     const { category, color, amount, notes } = budgetToEdit;
+    //     this.setState({
+    //         category: category,
+    //         color: color,
+    //         amount: amount,
+    //         notes: notes
+    //     })
+    // }
 
-    componentDidMount=()=>{
-        const budgetToEdit = this.props.currentBudget.find(el => el.id === this.props.currentBudgetID);
-        const { category, color, amount, notes } = budgetToEdit;
-        this.setState({
-            category: category,
-            color: color,
-            amount: amount,
-            notes: notes
-        })
-    }
-    
     onHandleChange = e => {
         e.preventDefault();
         this.setState({
-            [e.target.name]: e.target.value 
+            [e.target.name]: e.target.value
         });
     };
-    onHandleSave = (data,id) => {
+    onHandleSave = (data, id) => {
         this.props.dispatch(updateBudget(data, id));
         this.props.onEditBudgetHandle();
         // Show alert when the budget category exceeds 100%.
 
         let total = 0;
         this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
-        total = total *  100 / this.state.amount;
+        total = total * 100 / this.state.amount;
         if (total >= 100) {
             this.budgetNotification(`The budget ${this.state.category} exceed 100% of its capacity.`);
         }
@@ -49,19 +49,19 @@ class EditBudgetMode extends Component {
 
     budgetNotification = (alert) => {
         store.addNotification({
-          title: "Notification",
-          message: alert,
-          type: "warning",
-          insert: "top",
-          container: "top-right",
-          animationIn: ["animated", "fadeIn"],
-          animationOut: ["animated", "fadeOut"],
-          dismiss: {
-            duration: 5000,
-            onScreen: true
-          },
+            title: "Notification",
+            message: alert,
+            type: "warning",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+                duration: 5000,
+                onScreen: true
+            },
         });
-      }
+    }
 
     render() {
         // const budgetToEdit = this.props.currentBudget.find(el => el.id === this.props.currentBudgetID);
@@ -70,44 +70,15 @@ class EditBudgetMode extends Component {
             <div className='ext-budget-modal'>
                 <div className='int-budget-edit-modal'>
                     <button className='x' onClick={this.props.onEditBudgetHandle}>x</button>
-                    <form>
-                        <span className="formtext-edit">&#x3C;EDIT BUDGET/&#x3E;</span>
-                        <div className='name-color'>
-                            <label name='color'>Color</label>
-                            <input
-                                type="color"
-                                name='color'
-                                value={this.state.color}
-                                onChange={e => this.onHandleChange(e)}
-                            />
-                        </div>
-                        <div className='category'>
-                            <label name='category'>Budget Type</label>
-                            <select
-                                name='category'
-                                onChange={e => this.onHandleChange(e)}
-                                value={this.state.category}
-                            >
-                                {dropdown_options}
-                            </select>
-                        </div>
-                        <label name='amount'>Amount</label>
-                        <input
-                            name='amount'
-                            type="number"
-                            value={this.state.amount}
-                            onChange={e => this.onHandleChange(e)}
-                        />
-                        <textarea
-                            name='notes'
-                            value={this.state.notes}
-                            placeholder="Budget description..."
-                            onChange={e => this.onHandleChange(e)}
-                        />
-                        <button type="button" onClick={() => this.onHandleSave(this.state, this.props.currentBudgetID)}>
-                            Save
-                            </button>
-                    </form>
+                    <FormGroup legend="<EDIT BUDGET />">
+                        <FormInput label="Color" name="color" type="color" onChange={this.onHandleChange} />
+                        <FormSelect label="Budget Type" name="Category" onChange={this.onHandleChange}>
+                            {dropdown_options}
+                        </FormSelect>
+                        <FormInput label="Amount" name="amount" type="number" onChange={this.onHandleChange} />
+                        <FormTextArea label="Notes" name="notes" placeholder="Savings description..." onChange={this.onHandleChange} />
+                        <FormButton type="submit" onClick={() => this.onHandleSave(this.state)}>Save</FormButton>
+                    </FormGroup>
                 </div>
             </div>
         )

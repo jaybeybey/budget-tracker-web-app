@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
-
+import { getCurrentMonthExpenses } from '../../../../store/selectors';
 
 const spendingsTable = (props) => {
     const categories = ["Entertainment", "Grocery", "Fees", "Rent", "Taxes"];
@@ -54,7 +54,7 @@ const spendingsTable = (props) => {
 
 const mapStateToProps = state => {
     return {
-        items: state.budgetReducer,
+        items: getCurrentMonthExpenses(state),
         budget: state.newBudget
     };
 };

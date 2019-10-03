@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 import './styles.css'
 
 import { newSavings } from '../../../../store/actions'
+import { FormInput, FormGroup, FormTextArea, FormButton } from '../../../forms';
 
-class Budget extends Component {
+class SavingsModal extends Component {
     state = {
         name: '',
         color: '',
@@ -27,43 +28,17 @@ class Budget extends Component {
             <div className='ext-budget-modal'>
                 <div className='int-budget-modal'>
                     <button className='x' onClick={this.props.onSavingsModal}>x</button>
-                    <form>
-                        <span className="formtext">&#x3C;SAVINGS/&#x3E;</span>
-                        <div className='name-color'>
-                            <label>Name</label>
-                            <input
-                                name='name'
-                                type="text"
-                                placeholder="Savings Name"
-                                onChange={e => this.onHandleChange(e)}
-                                required
-                            />
-                            <label name='color'>Color</label>
-                            <input
-                                type="color"
-                                name='color'
-                                onChange={e => this.onHandleChange(e)}
-                            />
-                        </div>
-                        <label name='amount'>Amount</label>
-                        <input
-                            name='amount'
-                            type="number"
-                            placeholder="How much do you want to save?"
-                            onChange={e => this.onHandleChange(e)}
-                            required
-                        />
-                        <textarea
-                            name='notes'
-                            placeholder="Savings description..."
-                            onChange={e => this.onHandleChange(e)}
-                        />
-                        <button type="button" onClick={() => this.onHandleSave(this.state)}>Save</button>
-                    </form>
+                    <FormGroup legend="<SAVINGS />">
+                        <FormInput label="Name" name="name" type="text" onChange={this.onHandleChange} />
+                        <FormInput label="Color" name="color" type="color" onChange={this.onHandleChange} />
+                        <FormInput label="Amount" name="amount" type="number" onChange={this.onHandleChange} />
+                        <FormTextArea label="Notes" name="notes" placeholder="Savings description..." onChange={this.onHandleChange} />
+                        <FormButton type="submit" onClick={() => this.onHandleSave(this.state)}>Save</FormButton>
+                    </FormGroup>
                 </div>
             </div>
         )
     }
 }
 
-export default connect()(Budget);
+export default connect()(SavingsModal);

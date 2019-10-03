@@ -6,18 +6,7 @@ import { updateUser } from '../../../store/actions'
 import currency from "../../../containers/dropdown_option/currency";
 
 import './styles.css';
-
-const FormInput = ({label, name, type, onChange}) => (
-  <div className="form-input">
-      <label>{label}</label>
-      <input
-        className="input"
-        name={name}
-        type={type}
-        onChange={e => onChange(e)}
-      />
-  </div>
-);
+import {FormInput} from '../../forms';
 
 class FormSettings extends Component {
   state = {

@@ -9,6 +9,17 @@
     background-color: aliceblue;
 }
 
+.montly-date-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.montly-date-container label {
+    margin: 0;
+    padding: 0 10px;
+}
+
 
 /* .btn-budget {
     position: relative;
