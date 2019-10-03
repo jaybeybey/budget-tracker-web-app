@@ -72,7 +72,7 @@ class EditBudgetMode extends Component {
                     <button className='x' onClick={this.props.onEditBudgetHandle}>x</button>
                     <FormGroup legend="<EDIT BUDGET />">
                         <FormInput label="Color" name="color" type="color" onChange={this.onHandleChange} />
-                        <FormSelect label="Budget Type" name="Category" onChange={this.onHandleChange}>
+                        <FormSelect label="Budget Type" name="category" onChange={this.onHandleChange}>
                             {dropdown_options}
                         </FormSelect>
                         <FormInput label="Amount" name="amount" type="number" onChange={this.onHandleChange} />
