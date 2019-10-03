@@ -10,6 +10,7 @@ import ExpenseModal from '../expenseModal';
 import BootstrapTable from 'react-bootstrap-table-next';
 import "./styles.css";
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import { getCurrentMonthExpenses } from '../../store/selectors';
 
 
 const filterItemsBySearch = (items, search) => items.filter((item) => {
@@ -56,7 +57,7 @@ const ExpensesList = props => {
 
 const mapStateToProps = state => {
   return {
-    items: state.budgetReducer,
+    items: getCurrentMonthExpenses(state),
     currency: state.user.defaultCurrency
   };
 };
