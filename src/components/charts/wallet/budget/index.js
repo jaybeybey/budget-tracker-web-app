@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import uuid from 'uuid';
 
-
 import './styles.css'
 
 import { newBudget } from '../../../../store/actions'
 import category from '../../../../containers/dropdown_option/category'
+import { FormInput, FormGroup, FormSelect, FormTextArea, FormButton } from '../../../forms';
 
-class budget extends Component {
+
+class NewBudgetModal extends Component {
     state = {
         id: uuid(),
         category: '',
@@ -25,51 +26,25 @@ class budget extends Component {
         this.props.dispatch(newBudget(data));
         this.props.onBudgetModal();
     };
-    
+
     render() {
         return (
             <div className='ext-budget-modal'>
                 <div className='int-budget-modal'>
                     <button className='x' onClick={this.props.onBudgetModal}>x</button>
-                    <form>
-                        <span className="formtext">&#x3C;BUDGET/&#x3E;</span>
-                        <div className='name-color'>
-                            <label name='color'>Color</label>
-                            <input
-                                type="color"
-                                name='color'
-                                onChange={e => this.onHandleChange(e)}
-                            />
-                        </div>
-                        <div className='category'>
-                            <label name='category'>Budget Type</label>
-                            <select
-                                name='category'
-                                onChange={e => this.onHandleChange(e)}
-                                required
-                            >
-                                {category}
-                            </select>
-                        </div>
-                        <label name='amount'>Amount</label>
-                        <input
-                            name='amount'
-                            type="number"
-                            placeholder="Budget Amount"
-                            onChange={e => this.onHandleChange(e)}
-                            required
-                        />
-                        <textarea
-                            name='notes'
-                            placeholder="Budget description..."
-                            onChange={e => this.onHandleChange(e)}
-                        />
-                        <button type="button" onClick={() => this.onHandleSave(this.state)}>Save</button>
-                    </form>
+                    <FormGroup legend="<BUDGET />">
+                        <FormInput label="Color" name="color" type="color" onChange={this.onHandleChange} />
+                        <FormSelect label="Budget Type" name="Category" onChange={this.onHandleChange}>
+                            {category}
+                        </FormSelect>
+                        <FormInput label="Amount" name="amount" type="number" onChange={this.onHandleChange} />
+                        <FormTextArea label="Notes" name="notes" placeholder="Savings description..." onChange={this.onHandleChange} />
+                        <FormButton type="submit" onClick={() => this.onHandleSave(this.state)}>Save</FormButton>
+                    </FormGroup>
                 </div>
             </div>
         )
     }
 }
 
-export default connect()(budget);
+export default connect()(NewBudgetModal);
