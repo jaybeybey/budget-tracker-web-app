@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Chart from "react-apexcharts";
+import { getCurrentMonthExpenses } from '../../../../store/selectors';
 
 class BreakDownChart extends Component {
   categories = ["Fees", "Rent", "Taxes", "Entertainment", "Grocery"];
@@ -66,7 +67,7 @@ class BreakDownChart extends Component {
 
 const mapStateToProps = state => {
   return {
-    items: state.budgetReducer,
+    items: getCurrentMonthExpenses(state),
     budget: state.newBudget
   };
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import ReactApexChart from "react-apexcharts";
 import './styles.css';
+import { getCurrentMonthExpenses } from '../../../../store/selectors';
 
 /**
  * Given the initial budget, the expenses and savings, creates
@@ -82,7 +83,7 @@ const Chart = ({ initialBudget, expenses, savings }) => {
 }
 
 const mapStateToProps = state => ({
-  expenses: state.budgetReducer,
+  expenses: getCurrentMonthExpenses(state),
   savings: state.newSavings,
   initialBudget: state.user.income,
 });
