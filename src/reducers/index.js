@@ -1,5 +1,7 @@
 import uuid from 'uuid';
 
+const currentDate = new Date();
+
 const initialState = {
   expenses: [{
     id: uuid(),
@@ -46,7 +48,8 @@ const initialState = {
     firstName: 'FirstName',
     lastName: 'LastName',
     income: 4000,
-    defaultCurrency: 'CHF'
+    defaultCurrency: 'CHF',
+    currentMonth: `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}`,
   },
   budget: [
     {
@@ -106,12 +109,15 @@ export const usersReducer = (state = initialState.user, action) => {
     case 'UPDATE_USER':
       return (
         {
+          ...state,
           firstName: action.firstName,
           lastName: action.lastName,
           income: action.income,
           defaultCurrency: action.defaultCurrency
         }
-      )
+      );
+    case 'SET_CURRENT_BUDGET_MONTH':
+      return ({ ...state, currentMonth: action.currentMonth });
     default:
       return state;
   }
