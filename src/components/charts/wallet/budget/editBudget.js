@@ -17,16 +17,17 @@ class EditBudgetMode extends Component {
         amount: '',
         notes: ''
     }
-    // componentDidMount=()=>{
-    //     const budgetToEdit = this.props.currentBudget.find(el => el.id === this.props.currentBudgetID);
-    //     const { category, color, amount, notes } = budgetToEdit;
-    //     this.setState({
-    //         category: category,
-    //         color: color,
-    //         amount: amount,
-    //         notes: notes
-    //     })
-    // }
+
+    componentDidMount() {
+        const budgetToEdit = this.props.items.find(el => el.id === this.props.currentBudgetID);
+        const { category, color, amount, notes } = budgetToEdit;
+        this.setState({
+            category: category,
+            color: color,
+            amount: amount,
+            notes: notes
+        })
+    }
 
     onHandleChange = e => {
         e.preventDefault();
@@ -34,8 +35,8 @@ class EditBudgetMode extends Component {
             [e.target.name]: e.target.value
         });
     };
-    onHandleSave = (data, id) => {
-        this.props.dispatch(updateBudget(data, id));
+    onHandleSave = (data) => {
+        this.props.dispatch(updateBudget(data, data.id));
         this.props.onEditBudgetHandle();
         // Show alert when the budget category exceeds 100%.
 
@@ -64,19 +65,18 @@ class EditBudgetMode extends Component {
     }
 
     render() {
-        // const budgetToEdit = this.props.currentBudget.find(el => el.id === this.props.currentBudgetID);
-        // const { category, color, amount, notes } = budgetToEdit;
+        const { category, color, amount, notes } = this.state;
         return (
             <div className='ext-budget-modal'>
                 <div className='int-budget-edit-modal'>
                     <button className='x' onClick={this.props.onEditBudgetHandle}>x</button>
                     <FormGroup legend="<EDIT BUDGET />">
-                        <FormInput label="Color" name="color" type="color" onChange={this.onHandleChange} />
-                        <FormSelect label="Budget Type" name="category" onChange={this.onHandleChange}>
+                        <FormInput label="Color" name="color" type="color" value={color} onChange={this.onHandleChange} />
+                        <FormSelect label="Budget Type" name="category" value={category} onChange={this.onHandleChange}>
                             {dropdown_options}
                         </FormSelect>
-                        <FormInput label="Amount" name="amount" type="number" onChange={this.onHandleChange} />
-                        <FormTextArea label="Notes" name="notes" placeholder="Savings description..." onChange={this.onHandleChange} />
+                        <FormInput label="Amount" name="amount" type="number" value={amount} onChange={this.onHandleChange} />
+                        <FormTextArea label="Notes" name="notes" placeholder="Savings description..." value={notes} onChange={this.onHandleChange} />
                         <FormButton type="submit" onClick={() => this.onHandleSave(this.state)}>Save</FormButton>
                     </FormGroup>
                 </div>
@@ -85,6 +85,6 @@ class EditBudgetMode extends Component {
     }
 }
 
-const mapStateToProps = state => ({ items: state.budgetReducer });
+const mapStateToProps = state => ({ items: state.newBudget });
 
 export default connect(mapStateToProps)(EditBudgetMode);
