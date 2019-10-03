@@ -15,7 +15,8 @@ class EditBudgetMode extends Component {
         category: '',
         color: '',
         amount: '',
-        notes: ''
+        notes: '',
+        isTouched: false,
     }
 
     componentDidMount() {
@@ -32,14 +33,18 @@ class EditBudgetMode extends Component {
     onHandleChange = e => {
         e.preventDefault();
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            isTouched: true,
         });
     };
     onHandleSave = (data) => {
         this.props.dispatch(updateBudget(data, data.id));
         this.props.onEditBudgetHandle();
         // Show alert when the budget category exceeds 100%.
-
+        
+        if (!this.state.isTouched) {
+            return;
+        }
         let total = 0;
         this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
         total = total * 100 / this.state.amount;
