@@ -34,7 +34,7 @@ class NewBudgetModal extends Component {
                     <button className='x' onClick={this.props.onBudgetModal}>x</button>
                     <FormGroup legend="<BUDGET />">
                         <FormInput label="Color" name="color" type="color" onChange={this.onHandleChange} />
-                        <FormSelect label="Budget Type" name="Category" onChange={this.onHandleChange}>
+                        <FormSelect label="Budget Type" name="category" onChange={this.onHandleChange}>
                             {category}
                         </FormSelect>
                         <FormInput label="Amount" name="amount" type="number" onChange={this.onHandleChange} />
