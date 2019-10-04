@@ -140,26 +140,26 @@ export const initialState = {
         notes: "okay"
       }],
     user: {
-      firstName: 'FirstName',
-      lastName: 'LastName',
+      firstName: '',
+      lastName: '',
       income: 4000,
-      defaultCurrency: 'CHF',
+      defaultCurrency: '',
       currentMonth: `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}`,
     },
     budget: [
-      {
-        id: uuid(),
-        category: 'Grocery',
-        color: '#FDF3F4',
-        amount: 300,
-        notes: 'My budget for one month'
-      }, {
-        id: uuid(),
-        category: 'Taxes',
-        color: '#00E396',
-        amount: 600,
-        notes: 'My budget for one Tax'
-      }
+      // {
+      //   id: uuid(),
+      //   category: 'Grocery',
+      //   color: '#FDF3F4',
+      //   amount: 300,
+      //   notes: 'My budget for one month'
+      // }, {
+      //   id: uuid(),
+      //   category: 'Taxes',
+      //   color: '#00E396',
+      //   amount: 600,
+      //   notes: 'My budget for one Tax'
+      // }
     ],
     savings: []
   };

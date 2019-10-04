@@ -1,73 +1,75 @@
 .ext-budget-modal {
-  position: fixed; 
-  z-index: 1; 
-  left: 0px;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background: rgb(0, 0, 0, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: fixed; 
+    z-index: 1; 
+    left: 0px;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgb(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .int-budget-modal {
-  position: relative;
-  margin: 0 auto;
-  max-width: 500px;
-  height: 450px;
-  border-radius: 5px;
-  padding: 15px;
-  background:#FFFFFF;
+    position: relative;
+    margin: 0 auto;
+    max-width: 500px;
+    height: 450px;
+    border-radius: 5px;
+    padding: 15px;
+    background:#FFFFFF;
 }
 
 .int-budget-modal form {
-border: thin solid red;
-padding: 2rem;
-margin: 2rem;
-display: flex;
-flex-direction: column;
+  border: thin solid red;
+  padding: 2rem;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
 }
-
+ 
 .formtext {
-position: relative;
-top: -48px;
-background: white;
-padding: 7px;
-width: 57px;
-color: red;
-font-size: 10px;
+  position: relative;
+  top: -48px;
+  background: white;
+  padding: 7px;
+  width: 57px;
+  color: red;
+  font-size: 10px;
 }
 
 /*-------------------------------------------------- edit budget modal -------------------------------------------------- */
 
 
 .int-budget-edit-modal {
-position: relative;
-margin: 0 auto;
-max-width: 500px;
-height: 450px;
-border-radius: 5px;
-padding: 15px;
-background:rgb(145, 179, 199);
+  position: absolute;
+  margin: 0 auto;
+  left: 40%;
+  top: 20%;
+  width: 500px;
+  height: 450px;
+  border-radius: 5px;
+  padding: 15px;
+  background:rgb(206, 223, 199);
 }
 
 .int-budget-edit-modal form {
-border: thin solid rgb(38, 0, 255);
-padding: 2rem;
-margin: 2rem;
-display: flex;
-flex-direction: column;
+  border: thin solid rgb(38, 0, 255);
+  padding: 2rem;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .formtext-edit {
-position: relative;
-top: -48px;
-/* background: white; */
-background:rgb(201, 15, 9);
-padding: 7px;
-width: 57px;
-color: rgb(28, 54, 204);
-font-size: 10px;
+  position: relative;
+  top: -48px;
+  /* background: white; */
+  background:rgb(206, 223, 199);
+  padding: 7px;
+  width: 57px;
+  color: rgb(0, 38, 255);
+  font-size: 10px;
 }

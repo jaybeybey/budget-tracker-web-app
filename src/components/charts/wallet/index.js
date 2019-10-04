@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from 'react-redux'
 
 // import { store } from 'react-notifications-component';
@@ -67,11 +67,6 @@ const Wallet = (props) => {
         }) : null
     }
 
-
-    // useEffect(() => {
-    //     console.log(props.newBudget)
-    // })
-
     return (
         <>
             <div className='top-btns'>
@@ -84,7 +79,6 @@ const Wallet = (props) => {
                 </div>
                 {renderBudget()}
                 {renderSavings()}
-                {/* {renderBudgetEditMode()} */}
                 {showSavingsModal ? <Savings onSavingsModal={onSavingsModal} /> : null}
                 {showBudgetModal ? <Budget onBudgetModal={onBudgetModal} /> : null}
                 {editBudget ?
@@ -92,7 +86,6 @@ const Wallet = (props) => {
                         onEditBudgetHandle={onEditBudgetHandle} />
                     : null}
             </div>
-            {/* {budgetAlert(props.items)} */}
         </>
 
     )
