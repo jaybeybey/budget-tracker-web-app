@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 
 import './styles.css'
 
-import { updateBudget } from '../../../../store/actions'
+import { updateBudget, deleteBudget } from '../../../../store/actions'
 import dropdown_options from '../../../../containers/dropdown_option/category'
 import 'react-notifications-component/dist/theme.css'
 import { store } from 'react-notifications-component';
-import { FormInput, FormGroup, FormSelect, FormTextArea, FormButton } from '../../../forms';
+import { FormInput, FormGroup, FormSelect, FormTextArea, EditButton } from '../../../forms';
 
 class EditBudgetMode extends Component {
     state = {
@@ -41,7 +41,7 @@ class EditBudgetMode extends Component {
         this.props.dispatch(updateBudget(data, data.id));
         this.props.onEditBudgetHandle();
         // Show alert when the budget category exceeds 100%.
-        
+
         if (!this.state.isTouched) {
             return;
         }
@@ -49,9 +49,14 @@ class EditBudgetMode extends Component {
         this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
         total = total * 100 / this.state.amount;
         if (total >= 100) {
-            this.budgetNotification(`The budget ${this.state.category} exceed 100% of its capacity.`);
+            this.budgetNotification(`The budget ${this.state.category} has reach 100% of its limit.`);
         }
     };
+
+    onHandleDelete = (id) => {
+        this.props.dispatch(deleteBudget(id));
+        this.props.onEditBudgetHandle();
+    }
 
     budgetNotification = (alert) => {
         store.addNotification({
@@ -82,7 +87,10 @@ class EditBudgetMode extends Component {
                         </FormSelect>
                         <FormInput label="Amount" name="amount" type="number" value={amount} onChange={this.onHandleChange} />
                         <FormTextArea label="Notes" name="notes" placeholder="Savings description..." value={notes} onChange={this.onHandleChange} />
-                        <FormButton type="submit" onClick={() => this.onHandleSave(this.state)}>Save</FormButton>
+                        <div className='save-del-btn'>
+                            <EditButton type="submit" onClick={() => this.onHandleSave(this.state)}>Save</EditButton>
+                            <EditButton type="submit" onClick={() => this.onHandleDelete(this.props.currentBudgetID)}>Delete</EditButton>
+                        </div>
                     </FormGroup>
                 </div>
             </div>

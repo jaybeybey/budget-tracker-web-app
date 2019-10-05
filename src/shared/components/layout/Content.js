@@ -3,7 +3,7 @@ import React from 'react';
 
 const Content = props => {
   const { children } = props;
-
+//react recipe book 
   return (
     <main>
       {children}

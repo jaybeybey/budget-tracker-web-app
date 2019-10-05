@@ -26,7 +26,6 @@ const createBudgetList = (initialBudget, expenses, savings) => {
 /**
  * Given the expenses and savings, join them together, and creates an array
  * which contains a string - the formatted amount spent.
- * @example: `Spent 115 CHR in Cola`
  */
 const createSpendArray = (expenses, savings) =>
   expenses.concat(savings).map(item => `Spent ${item.amount} ${item.currency || ''} in "${item.name}"`);
@@ -34,7 +33,7 @@ const createSpendArray = (expenses, savings) =>
 const Chart = ({ initialBudget, expenses, savings }) => {
   const budgetList = createBudgetList(initialBudget, expenses, savings);
   const spendArray = createSpendArray(expenses, savings);
-  spendArray.unshift('Initial Budget');
+  spendArray.unshift('Salary');
   return (
     <div className="mixed-chart-container">
       <div className="mixed-chart">
@@ -71,13 +70,13 @@ const Chart = ({ initialBudget, expenses, savings }) => {
             chart: { toolbar: { show: false } },
           }}
           series={[{
-            name: 'Budget',
+            name: 'Remaining Salary',
             data: budgetList
           }]}
           type="bar"
         />
       </div>
-      <h3 className="text-center">Initial budget changes, including expenses and savings.</h3>
+      <h3 className="text-center">Initial Salary, including expenses and savings.</h3>
     </div>
   )
 }

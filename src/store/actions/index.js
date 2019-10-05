@@ -62,6 +62,11 @@ export const updateBudget = (data,id) => ({
   notes: data.notes
 });
 
+export const deleteBudget = (id) => ({
+  type: 'DELETE_BUDGET',
+  id: id
+})
+
 export const setCurrentBudgetMonth = (currentMonth) => ({
   type: "SET_CURRENT_BUDGET_MONTH",
   currentMonth,

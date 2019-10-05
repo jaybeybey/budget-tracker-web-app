@@ -25,6 +25,10 @@ export const FormButton = ({ children, ...props }) => (
     <button className="form-btn" {...props}>{children}</button>
 );
 
+export const EditButton = ({ children, ...props }) => (
+    <button className="edit-form-btn" {...props}>{children}</button>
+);
+
 export const FormSelect = ({ label, name, value, onChange, children }) => (
     <div className="form-input">
         <label>{label}</label>

@@ -23,7 +23,6 @@ const Wallet = (props) => {
     const onBudgetModal = () => {
         setShowBudgetModal(!showBudgetModal);
     };
-
     //on handling budget modal edit and getting the id of our current budget
     const [currentBudgetID, setCurrentBudgetId] = useState(null)
     const [editBudget, setEditBudget] = useState(false);

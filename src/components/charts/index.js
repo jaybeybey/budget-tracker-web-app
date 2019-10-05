@@ -5,7 +5,7 @@ import './styles.css'
 
 import BalanceChart from './balanceChart'
 import SpendingChart from './spendingChart'
-import SavingsChart from './savingsChart'
+// import SavingsChart from './savingsChart'
 import BreakDownChart from './breakDownChart'
 import MixedChart from './breakDownChart/mixedChart'
 import  { setCurrentBudgetMonth } from '../../store/actions';
@@ -43,7 +43,7 @@ const Report = (props) => {
                         <SpendingChart totalSpending={reducedTotalSpending} income={income} />
                     </div>
                     <div className="col-md-12 col-lg-3">
-                        <SavingsChart />
+                        {/* <SavingsChart /> */}
                     </div>
                     <div className="col-md-12 col-lg-3">
                         <BalanceChart totalSaving={totalSaving} income={income} />

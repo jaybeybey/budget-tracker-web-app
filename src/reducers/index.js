@@ -1,4 +1,4 @@
-import {initialState} from './initialState';
+import { initialState } from './initialState';
 
 export const budgetReducer = (state = initialState.expenses, action) => {
   switch (action.type) {
@@ -81,6 +81,8 @@ export const newBudget = (state = initialState.budget, action) => {
             notes: action.notes
           } : item
       ))
+    case "DELETE_BUDGET":
+      return state.filter(item => item.id !== action.id);
     default:
       return state;
   }
