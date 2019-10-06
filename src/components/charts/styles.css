@@ -27,6 +27,26 @@
     background-color: #EEEEEE;
 }
 
+.savings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.savings img {
+    height: 80px;
+    padding-bottom: 20px;
+}
+
+.savings h2, span {
+    color: #008FFB;
+}
+
+.savings span {
+    font-weight: bold;
+}
+
 /* .btn-budget {
     position: relative;
     display: inline-block;
