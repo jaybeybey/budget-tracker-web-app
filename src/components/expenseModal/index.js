@@ -8,7 +8,10 @@ import { addNewExpense, updateExpense } from "../../store/actions";
 import categories from "../../containers/dropdown_option/category";
 
 import { store } from 'react-notifications-component';
-import 'react-notifications-component/dist/theme.css'
+// import 'react-notifications-component/dist/theme.css'
+
+// import { FormInput, FormGroup, FormSelect, FormTextArea, FormButton } from '../forms';
+
 
 class ExpenseModal extends Component {
 
@@ -106,9 +109,11 @@ class ExpenseModal extends Component {
     const budget = budgets.find(budget => budget.category === newExpense.category);
     if (!budget) return;
     items.filter(item => item.category === newExpense.category).forEach(item => total += Number(item.amount));
-    total = total * 100 / budget.amount;
-    if (total >= 100) {
-      this.budgetNotification(`The budget ${this.state.category} exceed 100% of its capacity.`);
+    total = (total * 100) / budget.amount;
+    if (total === 100) {
+      this.budgetNotification(`The budget ${this.state.category} has reach 100% of its limit.`);
+    } else if (total >= 101) {
+      this.overBudgetNotification(`The budget ${this.state.category} is over its limit.`);
     }
   };
 
@@ -128,11 +133,43 @@ class ExpenseModal extends Component {
     });
   }
 
+  overBudgetNotification = (alert) => {
+    store.addNotification({
+        title: "Notification",
+        message: alert,
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+            duration: 5000,
+            onScreen: true
+        },
+    });
+}
 
   render() {
     const { name, amount, date, category, notes } = this.state;
 
     return (
+      // <div className='ext-budget-modal'>
+      //   <div className='int-budget-edit-modal'>
+      //     <button className='x' onClick={this.props.onCreateBudget}>x</button>
+      //     <FormGroup legend="<NEW EXPENSE/>">
+      //     <FormInput label="Name" name="name" type="text" value={name} onChange={e => this.onHandleChange(e)} />
+      //       <FormSelect label="Category" name="category" value={category} onChange={e => this.onHandleChange(e)}>
+      //         {categories}
+      //       </FormSelect>
+      //       <FormInput label="Amount" name="amount" type="number" value={amount} onChange={e => this.onHandleChange(e)} />
+      //       <FormInput label="Date" name="date" type="date" value={date} onChange={e => this.onHandleChange(e)} />
+      //       <FormTextArea label="Notes" name="notes" placeholder="Expense notes..." value={notes} onChange={e => this.onHandleChange(e)} />
+      //       <div className='save-del-btn'>
+      //         <FormButton type="submit" onClick={() => this.onHandleSave(this.state)}>Save</FormButton>
+      //       </div>
+      //     </FormGroup>
+      //   </div>
+      // </div>
       <div className="ext-budget">
         <div className="int-budget">
           <button className='x' onClick={this.props.onCreateBudget}>x</button>

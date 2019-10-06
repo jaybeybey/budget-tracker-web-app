@@ -78,7 +78,7 @@
 .top-btns .budget-btn {
   background-color: #4CAF50;
   color: black;
-  font-size: 16px;
+  /* font-size: 10px; */
   font-weight: bold;
   height: 100%;
   padding: 10px;

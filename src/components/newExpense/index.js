@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./styles.css";
 import uuid from "uuid";
 
-import { store } from 'react-notifications-component';
+// import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
 
 import { addNewBudget } from "../../store/actions";
@@ -71,30 +71,30 @@ class NewBudget extends Component {
     }
 
     // Show alert when the budget category exceeds 100%.
-    let total = 0;
-    this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
-    total = total * 100 / this.state.amount;
-    if (total >= 100) {
-      this.budgetNotification(`The budget ${this.state.category} exceed 100% of its capacity.`);
-    }
+    // let total = 0;
+    // this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
+    // total = total * 100 / this.state.amount;
+    // if (total >= 100) {
+    //   this.budgetNotification(`The budget ${this.state.category}.`);
+    // }
   };
 
 
-  budgetNotification = (alert) => {
-    store.addNotification({
-      title: "Notification",
-      message: alert,
-      type: "warning",
-      insert: "top",
-      container: "top-right",
-      animationIn: ["animated", "fadeIn"],
-      animationOut: ["animated", "fadeOut"],
-      dismiss: {
-        duration: 5000,
-        onScreen: true
-      },
-    });
-  }
+  // budgetNotification = (alert) => {
+  //   store.addNotification({
+  //     title: "Notification",
+  //     message: alert,
+  //     type: "warning",
+  //     insert: "top",
+  //     container: "top-right",
+  //     animationIn: ["animated", "fadeIn"],
+  //     animationOut: ["animated", "fadeOut"],
+  //     dismiss: {
+  //       duration: 5000,
+  //       onScreen: true
+  //     },
+  //   });
+  // }
 
   render() {
     return (

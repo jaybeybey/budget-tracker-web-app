@@ -5,8 +5,8 @@ import './styles.css'
 
 import { updateBudget, deleteBudget } from '../../../../store/actions'
 import dropdown_options from '../../../../containers/dropdown_option/category'
-import 'react-notifications-component/dist/theme.css'
-import { store } from 'react-notifications-component';
+// import 'react-notifications-component/dist/theme.css'
+// import { store } from 'react-notifications-component';
 import { FormInput, FormGroup, FormSelect, FormTextArea, EditButton } from '../../../forms';
 
 class EditBudgetMode extends Component {
@@ -16,7 +16,7 @@ class EditBudgetMode extends Component {
         color: '',
         amount: '',
         notes: '',
-        isTouched: false,
+        // isTouched: false,
     }
 
     componentDidMount() {
@@ -42,15 +42,17 @@ class EditBudgetMode extends Component {
         this.props.onEditBudgetHandle();
         // Show alert when the budget category exceeds 100%.
 
-        if (!this.state.isTouched) {
-            return;
-        }
-        let total = 0;
-        this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
-        total = total * 100 / this.state.amount;
-        if (total >= 100) {
-            this.budgetNotification(`The budget ${this.state.category} has reach 100% of its limit.`);
-        }
+        // if (!this.state.isTouched) {
+        //     return;
+        // }
+        // let total = 0;
+        // this.props.items.filter(item => item.category === this.state.category).forEach(item => total += item.amount);
+        // total = total * 100 / this.state.amount;
+        // if (total === 100) {
+        //     this.budgetNotification(`The budget ${this.state.category} has reach 100% of its limit.`);
+        // } else if (total > 100) {
+        //     this.overBudgetNotification(`The budget ${this.state.category} is over its limit.`);
+        // }
     };
 
     onHandleDelete = (id) => {
@@ -58,21 +60,37 @@ class EditBudgetMode extends Component {
         this.props.onEditBudgetHandle();
     }
 
-    budgetNotification = (alert) => {
-        store.addNotification({
-            title: "Notification",
-            message: alert,
-            type: "warning",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-                duration: 5000,
-                onScreen: true
-            },
-        });
-    }
+    // budgetNotification = (alert) => {
+    //     store.addNotification({
+    //         title: "Notification",
+    //         message: alert,
+    //         type: "warning",
+    //         insert: "top",
+    //         container: "top-right",
+    //         animationIn: ["animated", "fadeIn"],
+    //         animationOut: ["animated", "fadeOut"],
+    //         dismiss: {
+    //             duration: 5000,
+    //             onScreen: true
+    //         },
+    //     });
+    // }
+
+    // overBudgetNotification = (alert) => {
+    //     store.addNotification({
+    //         title: "Notification",
+    //         message: alert,
+    //         type: "Danger",
+    //         insert: "top",
+    //         container: "top-right",
+    //         animationIn: ["animated", "fadeIn"],
+    //         animationOut: ["animated", "fadeOut"],
+    //         dismiss: {
+    //             duration: 5000,
+    //             onScreen: true
+    //         },
+    //     });
+    // }
 
     render() {
         const { category, color, amount, notes } = this.state;

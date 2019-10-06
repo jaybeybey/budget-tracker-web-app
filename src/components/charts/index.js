@@ -8,7 +8,7 @@ import SpendingChart from './spendingChart'
 // import SavingsChart from './savingsChart'
 import BreakDownChart from './breakDownChart'
 import MixedChart from './breakDownChart/mixedChart'
-import  { setCurrentBudgetMonth } from '../../store/actions';
+import { setCurrentBudgetMonth } from '../../store/actions';
 import Wallet from './wallet'
 import { getCurrentMonthExpenses } from '../../store/selectors';
 
@@ -24,7 +24,7 @@ const MontlyDate = ({ currentMonth, onCurrentMonthChange }) => (
     </div>
 );
 
-const mapStateMontlyDate = state => ({ currentMonth: state.user.currentMonth});
+const mapStateMontlyDate = state => ({ currentMonth: state.user.currentMonth });
 const mapDispatchMontlyDate = { onCurrentMonthChange: setCurrentBudgetMonth }
 const ConnectedMontlyDate = connect(mapStateMontlyDate, mapDispatchMontlyDate)(MontlyDate);
 
@@ -33,17 +33,16 @@ const Report = (props) => {
     const totalSpending = expenses.map(num => parseInt(num.amount));
     const reducedTotalSpending = totalSpending.reduce((a, c) => a + c, 0);
     const totalSaving = income - reducedTotalSpending;
-    return (
-        <>
-            <Wallet />
-            <div className='report-container container overflow-hidden'>
-                <ConnectedMontlyDate />
+    const dataHandler = expenses.length > 0;
+
+    const renderCharts = () => {
+        return dataHandler ?
+            <>
                 <div className='gauge-charts row'>
                     <div className="col-md-12 col-lg-3">
                         <SpendingChart totalSpending={reducedTotalSpending} income={income} />
                     </div>
                     <div className="col-md-12 col-lg-3">
-                        {/* <SavingsChart /> */}
                     </div>
                     <div className="col-md-12 col-lg-3">
                         <BalanceChart totalSaving={totalSaving} income={income} />
@@ -51,6 +50,28 @@ const Report = (props) => {
                 </div>
                 <BreakDownChart />
                 <MixedChart />
+            </>
+            : <div className='hide-charts'><h1> no data available </h1></div>
+    }
+
+    return (
+        <>
+            <Wallet />
+            <div className='report-container container overflow-hidden'>
+                <ConnectedMontlyDate />
+                {/* <div className='gauge-charts row'>
+                    <div className="col-md-12 col-lg-3">
+                        <SpendingChart totalSpending={reducedTotalSpending} income={income} />
+                    </div>
+                    <div className="col-md-12 col-lg-3">
+                    </div>
+                    <div className="col-md-12 col-lg-3">
+                        <BalanceChart totalSaving={totalSaving} income={income} />
+                    </div>
+                </div>
+                <BreakDownChart />
+                <MixedChart /> */}
+                {renderCharts()}
             </div>
         </>
     )
